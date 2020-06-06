@@ -1,9 +1,11 @@
 package main
+/*
 We import 4 important libraries 
 1. “net/http” to access the core go http functionality
 2. “fmt” for formatting our text
 3. “html/template” a library that allows us to interact with our html file.
 4. "time" - a library for working with date and time.
+*/
 import (
    "net/http"
    "fmt"
@@ -26,7 +28,7 @@ func main() {
    //We tell Go exactly where we can find our html file. We ask Go to parse the html file (Notice
    // the relative path). We wrap it in a call to template.Must() which handles any errors and halts if there are fatal errors
    
-   templates := template.Must(template.ParseFiles("templates/welcome-template.html"))
+   templates := template.Must(template.ParseFiles("template/welcome-template.html"))
 
    //Our HTML comes with CSS that go needs to provide when we run the app. Here we tell go to create
    // a handle that looks in the static directory, go then uses the "/static/" as a url that our
@@ -43,7 +45,7 @@ func main() {
    http.HandleFunc("/" , func(w http.ResponseWriter, r *http.Request) {
 
       //Takes the name from the URL query e.g ?name=Martin, will set welcome.Name = Martin.
-      if name := r.FormValue("name"); name != "" {
+      if name := r.FormValue("Erik"); name != "Erik Kirkegaard" {
          welcome.Name = name;
       }
       //If errors show an internal server error message
