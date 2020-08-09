@@ -7,7 +7,26 @@
          <!-- The welcome struct (shown in the main.go code) is received within the HTML and we just need to use the . operator and retrieve the information we want -->
          <title>Welcome {{.Name}}</title>
    </head>
-   <body>
-      <div class="welcome center">Welcome {{.Name}}, it is {{.Time}}</div>
-   </body>
+  
+<body>
+   <div class="wrapper">
+     
+     <div class="left">
+       <img class="profile-picture" src="img/profile.jpg" width="200"/>
+       <h1 class="name">Erik Kirkegaard</h1>
+       <h4 class="subtitle">Software Engineer</h4>
+     </div>
+     
+     <div class="right">
+       <p class="bio">
+         Software Engineer, Finance nerd, Judoka and jiujiteiro. 
+       </p>
+       <ul class="social-links">
+         <li><a href="https://github.com/ianjsikes">Github</a></li>
+         <li><a href="https://medium.com/@ianjsikes">Medium</a></li>
+       </ul>
+     </div>
+     
+   </div>
+ </body>
 </html>
