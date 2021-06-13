@@ -21,15 +21,15 @@
     <meta property="twitter:title" content="Setting up JanusGraph on AWS using EC2 and DynamoDB" />
     
 
-    <meta property="og:image" content="/personal-blog/images/janusGraphInstall/gremlinconsole.png">
+    <meta property="og:image" content="/www.erikkirkegaard.com//images/janusGraphInstall/gremlinconsole.png">
 
 
     <!--[if lt IE 9]>
       <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
-    <link rel="stylesheet" type="text/css" href="/personal-blog/style.css" />
-    <link rel="alternate" type="application/rss+xml" title="Erik Kirkegaard - Data, Networks, Learning" href="/personal-blog/feed.xml" />
+    <link rel="stylesheet" type="text/css" href="/www.erikkirkegaard.com//style.css" />
+    <link rel="alternate" type="application/rss+xml" title="Erik Kirkegaard - Data, Networks, Learning" href="/www.erikkirkegaard.com//feed.xml" />
 
     <!-- Created with Jekyll Now - http://github.com/barryclark/jekyll-now -->
   </head>
@@ -38,16 +38,16 @@
     <div class="wrapper-masthead">
       <div class="container">
         <header class="masthead clearfix">
-          <a href="/personal-blog/" class="site-avatar"><img src="https://raw.githubusercontent.com/bricaud/personal-blog/master/images/Benjaminroundbwsmall.png" /></a>
+          <a href="/www.erikkirkegaard.com//" class="site-avatar"><img src="images/erik.png" /></a>
 
           <div class="site-info">
-            <h1 class="site-name"><a href="/personal-blog/">Erik Kirkegaard</a></h1>
+            <h1 class="site-name"><a href="/www.erikkirkegaard.com//">Erik Kirkegaard</a></h1>
             <p class="site-description">Data, Networks, Learning</p>
           </div>
 
           <nav>
-            <a href="/personal-blog/">Blog</a>
-            <a href="/personal-blog/about">About</a>
+            <a href="/www.erikkirkegaard.com//">Blog</a>
+            <a href="/www.erikkirkegaard.com//about">About</a>
           </nav>
         </header>
       </div>
@@ -66,7 +66,7 @@
 
 <p>The idea is to run the JanusGraph on an <a href="https://en.wikipedia.org/wiki/Amazon_Elastic_Compute_Cloud">EC2</a> machine and make the interface with the DynamoDB for storing the data. Optionally, you may also set up an access to a disk storage (with <a href="https://en.wikipedia.org/wiki/Amazon_S3">S3</a>) where you can save the configuration files or any kind of data needed for your app.</p>
 
-<p><img src="/personal-blog/images/janusGraphInstall/janusGraphSchema.png" alt="Architecture view" title="Architecture in the cloud" /></p>
+<p><img src="/www.erikkirkegaard.com//images/janusGraphInstall/janusGraphSchema.png" alt="Architecture view" title="Architecture in the cloud" /></p>
 
 <p>In order to help set up the graph database, the AWS team provides some <a href="https://github.com/awslabs/dynamodb-janusgraph-storage-backend">code and directions</a>. All is in there but the guidelines were not exactly leading to what I wanted. I did not want to run the script that launches an EC2 instance fully configured. I wanted to install JanusGraph on my already running EC2 instance and be able to customize it.</p>
 
@@ -232,7 +232,7 @@ Then the gremlin server configuration file must be changed (usually called <code
 
 		ga('create', 'UA-111576648-1', 'auto');
 		ga('send', 'pageview', {
-		  'page': '/personal-blog/janusgraph-running-on-aws-with-dynamodb/',
+		  'page': '/www.erikkirkegaard.com//janusgraph-running-on-aws-with-dynamodb/',
 		  'title': 'Setting up JanusGraph on AWS using EC2 and DynamoDB'
 		});
 	</script>

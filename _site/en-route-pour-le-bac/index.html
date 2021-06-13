@@ -25,15 +25,15 @@ Pendant 2 mois j’ai enseigné les mathématiques (ou du moins j’ai essayé!)
     <meta property="twitter:title" content="En route pour le Bac" />
     
 
-    <meta property="og:image" content="/personal-blog/images/lycee/loinormale.png">
+    <meta property="og:image" content="/www.erikkirkegaard.com//images/lycee/loinormale.png">
 
 
     <!--[if lt IE 9]>
       <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
-    <link rel="stylesheet" type="text/css" href="/personal-blog/style.css" />
-    <link rel="alternate" type="application/rss+xml" title="Erik Kirkegaard - Data, Networks, Learning" href="/personal-blog/feed.xml" />
+    <link rel="stylesheet" type="text/css" href="/www.erikkirkegaard.com//style.css" />
+    <link rel="alternate" type="application/rss+xml" title="Erik Kirkegaard - Data, Networks, Learning" href="/www.erikkirkegaard.com//feed.xml" />
 
     <!-- Created with Jekyll Now - http://github.com/barryclark/jekyll-now -->
   </head>
@@ -42,16 +42,16 @@ Pendant 2 mois j’ai enseigné les mathématiques (ou du moins j’ai essayé!)
     <div class="wrapper-masthead">
       <div class="container">
         <header class="masthead clearfix">
-          <a href="/personal-blog/" class="site-avatar"><img src="https://raw.githubusercontent.com/bricaud/personal-blog/master/images/Benjaminroundbwsmall.png" /></a>
+          <a href="/www.erikkirkegaard.com//" class="site-avatar"><img src="images/erik.png" /></a>
 
           <div class="site-info">
-            <h1 class="site-name"><a href="/personal-blog/">Erik Kirkegaard</a></h1>
+            <h1 class="site-name"><a href="/www.erikkirkegaard.com//">Erik Kirkegaard</a></h1>
             <p class="site-description">Data, Networks, Learning</p>
           </div>
 
           <nav>
-            <a href="/personal-blog/">Blog</a>
-            <a href="/personal-blog/about">About</a>
+            <a href="/www.erikkirkegaard.com//">Blog</a>
+            <a href="/www.erikkirkegaard.com//about">About</a>
           </nav>
         </header>
       </div>
@@ -84,7 +84,7 @@ Pendant 2 mois j’ai enseigné les mathématiques (ou du moins j’ai essayé!)
 
 <p>On va étudier la distribution des notes des élèves autour de la moyenne. Ce que l’on s’attend à trouver, c’est une <a href="https://fr.wikipedia.org/wiki/Fonction_gaussienne">distribution gaussienne</a>, la fameuse courbe en cloche que l’on voit sur la figure ci-dessous. On l’appelle encore “<a href="https://fr.wikipedia.org/wiki/Loi_normale">loi normale</a>”.</p>
 
-<p><img src="/personal-blog/images/lycee/loinormale.svg" alt="Loi normale" title="Loi normale par Nusha sur Wikipedia slovène — Transféré de sl.wikipedia à Commons., GFDL" /></p>
+<p><img src="/www.erikkirkegaard.com//images/lycee/loinormale.svg" alt="Loi normale" title="Loi normale par Nusha sur Wikipedia slovène — Transféré de sl.wikipedia à Commons., GFDL" /></p>
 
 <p>Dans une telle configuration, beaucoup d’élèves se situent autour de la moyenne de la classe et plus les notes sont élevés plus le nombre d’élèves qui ont de telles notes diminue. De la même manière pour les mauvaises notes. Il faut imaginer que sur la figure, le centre de la courbe (le zéro) est en fait la note moyenne. Le symbole sigma est l’écart type et permet de caractériser l’étalement de la distribution autour de la moyenne. Si toutes les notes sont concentrées dans un petit intervalle autour de la moyenne, sigma aura une valeur faible. Pour les classes de Bac Pro, on va estimer ce sigma et vérifier aussi que l’on a bien une gaussienne.</p>
 
@@ -92,23 +92,23 @@ Pendant 2 mois j’ai enseigné les mathématiques (ou du moins j’ai essayé!)
 
 <p>Pour les seconde Pro (2PRO), la moyenne de chaque élève a été obtenue avec 2 interrogations coefficient 2 et un devoir à la maison coefficient 1. J’ai été plutôt indulgent sur les notes et la moyenne de la classe est à 11.39. Ci-dessous, on peut voir la distribution des notes autour de la moyenne. L’histogramme montre le nombre d’élèves pour chaque note de 0 à 20. Par exemple, 2 élèves ont une note comprise entre 7 et 8 (les moins bonnes notes).</p>
 
-<p><img src="/personal-blog/images/lycee/distribution2PRO.png" alt="Distribution 2PRO" title="Distribution 2PRO" /></p>
+<p><img src="/www.erikkirkegaard.com//images/lycee/distribution2PRO.png" alt="Distribution 2PRO" title="Distribution 2PRO" /></p>
 
 <p>La distribution n’est pas une belle courbe en cloche et c’est normal. Quand on a peu de données (ici les notes de 30 élèves sur 3 interrogations), on a de fortes fluctuations statistiques. Un peu comme quand on fait des enfants, on a une chance sur 2 d’avoir une fille mais si on a 6 enfants, il est bien possible d’avoir 4, 5 voire même 6 filles. On a quand même, grossièrement, une allure de gaussienne, avec beaucoup d’élèves qui ont des notes autour de la moyenne de la classe, puis une diminution assez forte quand on s’en éloigne.</p>
 
 <p>Pour les premières (1PRO), la moyenne a été calculée à partir de 2 interrogations. La moyenne est de 7.9. J’ai été plus sévère sur les notes mais je ne crois pas que ca ait eu un impact sur leur travail. Voici la distribution des notes.</p>
 
-<p><img src="/personal-blog/images/lycee/distribution1PRO.png" alt="Distribution 1PRO" title="Distribution 1PRO" /></p>
+<p><img src="/www.erikkirkegaard.com//images/lycee/distribution1PRO.png" alt="Distribution 1PRO" title="Distribution 1PRO" /></p>
 
 <p>On remarque tout de suite que la distribution est plus étalée. Si on fait l’hypothèse que c’est une gaussienne, l’écart type est ici plus grand. Néanmoins, la distribution ne ressemble pas vraiment à une cloche. Il y aurait plutôt 2 bosses de part et d’autre de la moyenne, un peu comme s’il y avait 2 gaussiennes côte à côte. Ce pourrait être comme dans la figure ci-dessous (prise sur <a href="https://fr.wikipedia.org/wiki/Mod%C3%A8le_de_m%C3%A9langes_gaussiens">wikipedia</a>):</p>
 
-<p><img src="/personal-blog/images/lycee/Double_Gauss.png" alt="Distribution double gaussienne" title="Distribution double gaussienne" /></p>
+<p><img src="/www.erikkirkegaard.com//images/lycee/Double_Gauss.png" alt="Distribution double gaussienne" title="Distribution double gaussienne" /></p>
 
 <p>La courbe bleue est la somme des fonctions gaussiennes rouge et verte. Remarquez comme l’allure de cette courbe bleue ressemble à la distribution des notes, avec 2 “bosses” est un creux au milieu.</p>
 
 <p>Voyons maintenant ce que donne la distribution pour les terminales (TPRO). On a ici seulement une interrogation.</p>
 
-<p><img src="/personal-blog/images/lycee/distributionTPRO.png" alt="Distribution TPRO" title="Distribution TPRO" /></p>
+<p><img src="/www.erikkirkegaard.com//images/lycee/distributionTPRO.png" alt="Distribution TPRO" title="Distribution TPRO" /></p>
 
 <p>Le phénomène observé en 1PRO est ici encore plus criant. Il semble y avoir 2 groupes dans la classe: le groupe des bons élèves (entre 11 et 16) et le groupe des élèves qui ont décroché (majoritairement entre 4 et 8). On peut se demander d’abord si c’est une effet statistique et ensuite s’il s’agit d’une évolution des élèves vers 2 groupes distincts, au fur et à mesure des années de lycée. On va maintenant essayer de confirmer ou d’infirmer ce phénomène.</p>
 
@@ -151,17 +151,17 @@ Si les données sont issues d’une somme de plusieurs distributions gaussiennes
 
 <p>Voici ce que l’on obtient pour les notes des 2PRO si on suppose un seul groupe:</p>
 
-<p><img src="/personal-blog/images/lycee/distribution2PROfit.png" alt="Distribution 2PRO" title="Distribution 2PRO" /></p>
+<p><img src="/www.erikkirkegaard.com//images/lycee/distribution2PROfit.png" alt="Distribution 2PRO" title="Distribution 2PRO" /></p>
 
 <p>La gaussienne centrée en 11.39 et d’écart type 2.45 semble bien coller avec les données.
 Passons maintenant aux 1PRO.
 Supposons d’abord qu’il y a un seul groupe dans la classe. On obtient le résultat suivant.</p>
 
-<p><img src="/personal-blog/images/lycee/distribution1PROfit1.png" alt="Distribution 1PRO 1 groupe" title="Distribution 1PRO 1 groupe" /></p>
+<p><img src="/www.erikkirkegaard.com//images/lycee/distribution1PROfit1.png" alt="Distribution 1PRO 1 groupe" title="Distribution 1PRO 1 groupe" /></p>
 
 <p>Si l’on suppose qu’il existe 2 groupes.</p>
 
-<p><img src="/personal-blog/images/lycee/distribution1PROfit2.png" alt="Distribution 1PRO 2 groupes" title="Distribution 1PRO 2 groupe" /></p>
+<p><img src="/www.erikkirkegaard.com//images/lycee/distribution1PROfit2.png" alt="Distribution 1PRO 2 groupes" title="Distribution 1PRO 2 groupe" /></p>
 
 <p>Il est difficile de départager ces résultats en regardant les graphiques. On va essayer de le faire plus objectivement, en utilisant le score “BIC” pour <a href="https://en.wikipedia.org/wiki/Bayesian_information_criterion">Bayesian Information Criterion</a> ou critère d’information Bayésien. 
 Selon ce critère, le modèle pour lequel la valeur BIC est la plus petite est le meilleur (le plus adapté à la distribution).
@@ -172,18 +172,18 @@ Remarquons que l’écart type de la gaussienne pour les 2PRO vaut 2.45 et pour 
 
 <p>Finissons par la classe de TPRO. J’ai écarté la note zéro d’une élève qui est sortie de l’interrogation sans me rendre sa copie. Je ne pense pas que cette note soit représentative et elle fausse la distribution, d’autant plus que les notes n’ont pas été moyennées sur plusieurs interrogations. Voici ce que l’on obtient avec l’hypothèse d’un groupe.</p>
 
-<p><img src="/personal-blog/images/lycee/distributionTPROfit1.png" alt="Distribution TPRO 1 groupe" title="Distribution TPRO 1 groupe" /></p>
+<p><img src="/www.erikkirkegaard.com//images/lycee/distributionTPROfit1.png" alt="Distribution TPRO 1 groupe" title="Distribution TPRO 1 groupe" /></p>
 
 <p>Il est plus difficile de voir la correspondance entre la distribution des notes et le modèle. Si l’on suppose qu’il existe 2 groupes:</p>
 
-<p><img src="/personal-blog/images/lycee/distributionTPROfit2.png" alt="Distribution TPRO 2 groupes" title="Distribution TPRO 2 groupe" /></p>
+<p><img src="/www.erikkirkegaard.com//images/lycee/distributionTPROfit2.png" alt="Distribution TPRO 2 groupes" title="Distribution TPRO 2 groupe" /></p>
 
 <p>La représentation semble plus adaptée.
 Si l’on compare le BIC des 2 résultats, on a 127.37 pour le modèle à un groupe et 124.07 pour le modèle à 2 groupes. Il semble donc que le modèle à 2 groupes soit plus fidèle pour décrire la distribution des notes de TPRO. Cela confirme la tendance de séparation entre les élèves de la classe avec le groupe des “bons” et le groupe des élèves en difficulté qui ont baissé les bras.</p>
 
 <p>Pour montrer les limites de cette étude, voici maintenant la distribution des notes pour une classe de Seconde générale, sur une interrogation courte de 30 minutes.</p>
 
-<p><img src="/personal-blog/images/lycee/distribution2general.png" alt="Distribution 2 générale" title="Distribution 2 générale" /></p>
+<p><img src="/www.erikkirkegaard.com//images/lycee/distribution2general.png" alt="Distribution 2 générale" title="Distribution 2 générale" /></p>
 
 <p>On voit ici aussi une séparation en 2 groupes, comme pour les TPRO. L’évolution en 2 groupes distincts en filière Bac Pro n’est finalement peut être pas une évolution mais juste le fait que la classe, pour cette interrogation, est divisée en 2. La manière dont les questions sont posées dans l’interrogation peut avoir eu une influence, dans le sens où soit on sait faire l’exercice et on a tous les points, soit on a aucun point. Ceci creuse l’écart entre les élèves qui ont compris et les autres. Il faudrait confirmer sur les prochaines interrogations.</p>
 
@@ -252,7 +252,7 @@ Si l’on compare le BIC des 2 résultats, on a 127.37 pour le modèle à un gro
 
 		ga('create', 'UA-111576648-1', 'auto');
 		ga('send', 'pageview', {
-		  'page': '/personal-blog/en-route-pour-le-bac/',
+		  'page': '/www.erikkirkegaard.com//en-route-pour-le-bac/',
 		  'title': 'En route pour le Bac'
 		});
 	</script>

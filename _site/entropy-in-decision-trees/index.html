@@ -21,15 +21,15 @@
     <meta property="twitter:title" content="A simple explanation of entropy in decision trees" />
     
 
-    <meta property="og:image" content="/personal-blog/images/entropy/entropyfunction2.png">
+    <meta property="og:image" content="/www.erikkirkegaard.com//images/entropy/entropyfunction2.png">
 
 
     <!--[if lt IE 9]>
       <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
-    <link rel="stylesheet" type="text/css" href="/personal-blog/style.css" />
-    <link rel="alternate" type="application/rss+xml" title="Erik Kirkegaard - Data, Networks, Learning" href="/personal-blog/feed.xml" />
+    <link rel="stylesheet" type="text/css" href="/www.erikkirkegaard.com//style.css" />
+    <link rel="alternate" type="application/rss+xml" title="Erik Kirkegaard - Data, Networks, Learning" href="/www.erikkirkegaard.com//feed.xml" />
 
     <!-- Created with Jekyll Now - http://github.com/barryclark/jekyll-now -->
   </head>
@@ -38,16 +38,16 @@
     <div class="wrapper-masthead">
       <div class="container">
         <header class="masthead clearfix">
-          <a href="/personal-blog/" class="site-avatar"><img src="https://raw.githubusercontent.com/bricaud/personal-blog/master/images/Benjaminroundbwsmall.png" /></a>
+          <a href="/www.erikkirkegaard.com//" class="site-avatar"><img src="images/erik.png" /></a>
 
           <div class="site-info">
-            <h1 class="site-name"><a href="/personal-blog/">Erik Kirkegaard</a></h1>
+            <h1 class="site-name"><a href="/www.erikkirkegaard.com//">Erik Kirkegaard</a></h1>
             <p class="site-description">Data, Networks, Learning</p>
           </div>
 
           <nav>
-            <a href="/personal-blog/">Blog</a>
-            <a href="/personal-blog/about">About</a>
+            <a href="/www.erikkirkegaard.com//">Blog</a>
+            <a href="/www.erikkirkegaard.com//about">About</a>
           </nav>
         </header>
       </div>
@@ -82,7 +82,7 @@ Evaluating the entropy is a key step in decision trees, however, it is often ove
 
 <p>Imagine you are about to tidy your room or your kids’ room. Usually, you use a subjective measure to estimate how messy is it. (not everyone has the same measure :), but this is not the topic here). You know that objects must be on the shelves and probably grouped together, by type: books with books, toys with other toys …</p>
 
-<p><img src="/personal-blog/images/entropy/messy_room.jpg" alt="Messy room" title="My Kids messy room" /></p>
+<p><img src="/www.erikkirkegaard.com//images/entropy/messy_room.jpg" alt="Messy room" title="My Kids messy room" /></p>
 
 <p>Fortunately, the visual inspection can be replaced by a more mathematical approach for the data. A mathematical function exists for estimating the mess among mathematical objects and we can apply it to our data.
 The requirement of this function is that it provides a minimum value if there is the same kind of objects in the set and a maximal value if there is a uniform mixing of objects with different labels (or categories) in the set.</p>
@@ -97,7 +97,7 @@ The requirement of this function is that it provides a minimum value if there is
 
 <p>On the figure below is depicted the splitting process. Red rings and blue crosses symbolize elements with 2 different labels. The decision starts by evaluating the feature values of the elements inside the initial set. Based on their values, elements are put in Set 1 or Set 2. In this example, after the splitting, the state seems tidier, most of the red rings have been put in Set 1 while a majority of blue crosses are in Set 2.</p>
 
-<p><img src="/personal-blog/images/entropy/splitdiagram.png" alt="Decision digram" title="Decision diagram" /></p>
+<p><img src="/www.erikkirkegaard.com//images/entropy/splitdiagram.png" alt="Decision digram" title="Decision diagram" /></p>
 
 <p>So decision trees are here to tidy the dataset by looking at the values of the feature vector associated with each data point. Based on the values of each feature, decisions are made that eventually leads to a leaf and an answer.</p>
 
@@ -118,7 +118,7 @@ The requirement of this function is that it provides a minimum value if there is
 <p>A set is tidy if it contains only items with the same label, and messy if it is a mix of items with different labels.
 Now have a look at the Entropy function, below. When there is no item with label 1 in the set (p=0) or if the set is full of items with Label 1 (p=1), the entropy is zero. If you have half with Label 1, half with Label 2 (p=1/2), the entropy is maximal (equals to 1 since it is the <a href="https://en.wikipedia.org/wiki/Binary_logarithm">log base 2</a>).</p>
 
-<p><img src="/personal-blog/images/entropy/entropyfunction2.png" alt="Entropy function" title="Entropy function" /></p>
+<p><img src="/www.erikkirkegaard.com//images/entropy/entropyfunction2.png" alt="Entropy function" title="Entropy function" /></p>
 
 <p>In addition to these properties, the function is symmetric with respect to p=0.5: among the two categories to classify, there not one which is messier than the other.</p>
 
@@ -219,7 +219,7 @@ Don’t wait too long before tidying your room or your data!</p>
 
 		ga('create', 'UA-111576648-1', 'auto');
 		ga('send', 'pageview', {
-		  'page': '/personal-blog/entropy-in-decision-trees/',
+		  'page': '/www.erikkirkegaard.com//entropy-in-decision-trees/',
 		  'title': 'A simple explanation of entropy in decision trees'
 		});
 	</script>

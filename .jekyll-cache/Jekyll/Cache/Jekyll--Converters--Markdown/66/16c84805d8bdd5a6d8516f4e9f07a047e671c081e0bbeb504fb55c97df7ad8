@@ -1,4 +1,4 @@
-I"�+<p>On April 3-6 2020 I took part in the Hackathon <a href="https://covid19.lauzhack.com/">LauzHack against COVID-19</a> organized by the LauzHack association and EPFL. It was an interesting experience and I would like to summarize here the results we got during the 3 days on our project, as well as my impressions.</p>
+I"5,<p>On April 3-6 2020 I took part in the Hackathon <a href="https://covid19.lauzhack.com/">LauzHack against COVID-19</a> organized by the LauzHack association and EPFL. It was an interesting experience and I would like to summarize here the results we got during the 3 days on our project, as well as my impressions.</p>
 
 <p>I jumped on the occasion to propose a project related to the analysis of fake news and controversial topics about the COVID-19. The project was named ‘Tracking fake news in social networks’. Indeed, I have been working on a research project since September 2019 whose goal is to detect and analyse controversies in social networks. It is a joint research project between the Academy of Journalism at Neuchatel, the RTS (Swiss Radio and Television) and our lab, the LTS2 at EPFL. I thought it would be a good opportunity to share our knowledge about this phenomenon and make some concrete contributions to fight misinformation.</p>
 
@@ -25,7 +25,7 @@ We organized the project into 2 focused subteams and an additional group of part
 
 <p>The first results came directly from the tools developed for the research project. We made the list of Twitter users obtained from the references in the 3 subreddits. A graph was created from it, you can see it below. The nodes are users of the list and users mentioned by the users in the list. Connections are made between them if one of them has mentioned or retweeted the other at least twice. This graph shows the organization of the social network around users sharing news about the COVID19.</p>
 
-<p><img src="/personal-blog/images/hackathlon/redditgraphwithclusters3.png" alt="Graph of tweeter users" /></p>
+<p><img src="/www.erikkirkegaard.com//images/hackathlon/redditgraphwithclusters3.png" alt="Graph of tweeter users" /></p>
 
 <p>The first fact to notice is that this network is not made of isolated clusters. There are different communities (at least the 3: diffusing controversies, neutral and scientific info) but there is no clear separation between them. Users do not really isolate from each other, and regular news are diffused by all, even by extremists or conspiracists. This is shown by the fact that established institutions such as WHO and CDC as well as regular news, the NY Times, Washington Post or CNN are situated at the centre of the graph (light green area). This is unusual as conspiracists are often isolated from the rest and form (mis)information bubbles.</p>
 
@@ -37,28 +37,28 @@ We organized the project into 2 focused subteams and an additional group of part
 
 <p>The second result was obtained by extracting the text of all the tweets extracted from Reddit. Selecting the most popular keywords (made of one, two or three words), we got this interesting word cloud having the shape of a virus.</p>
 
-<p><img src="/personal-blog/images/hackathlon/23312.tif_wc.png" alt="Word cloud from tweets about COVID-19" /></p>
+<p><img src="/www.erikkirkegaard.com//images/hackathlon/23312.tif_wc.png" alt="Word cloud from tweets about COVID-19" /></p>
 
 <p>No surprise, the most popular expressions contain ‘coronavirus’, ‘outbreak’ or ‘pandemic’.</p>
 
 <h2 id="evolution-of-the-number-of-tweets">Evolution of the number of tweets</h2>
 
 <p>We also plotted the number of tweets per day appearing in the subreddits, concerning particular countries.
-<img src="/personal-blog/images/hackathlon/evolutionoftweets.png" alt="Evolution of the number of tweets" />
-<img src="/personal-blog/images/hackathlon/evolutionoftweets_woUS.png" alt="Evolution of the number of tweets not including China and the US" /></p>
+<img src="/www.erikkirkegaard.com//images/hackathlon/evolutionoftweets.png" alt="Evolution of the number of tweets" />
+<img src="/www.erikkirkegaard.com//images/hackathlon/evolutionoftweets_woUS.png" alt="Evolution of the number of tweets not including China and the US" /></p>
 
 <p>The US is over-represented as the subreddits are in English and most of its users are from the US. That is why we provide a second plot without it. On the first plot, it is interesting to notice the high number of tweets concerning China at the beginning of the epidemy. One can remember the <a href="https://en.wikipedia.org/wiki/Misinformation_related_to_the_2019%E2%80%9320_coronavirus_pandemic#Accidental_leakage">numerous fake news</a> at that time about how the virus was supposed to be a Chinese biological weapon, an accidental leakage from a Wuhan lab or due to 5G. Videos of the streets of Wuhan and overcrowded hospitals went viral too.</p>
 
 <p>Concerning the other countries, on the second plot, peaks can be seen when particular events or news about the virus appears. For example, Italy red curve peaks on the 25/02 when north of Italy was confined and on the 10/03 when all of Italy was confined.</p>
 
 <p>Outside of Twitter, the number of posts per day in the controversial subreddit r/china_flu (next figure) shows several peaks between January and April. It highlights periods when major events occurred, triggering many discussions and a higher exchange of information. Starting from mid-January the subreddit users are increasingly sharing information about the situation in Wuhan and the spreading of the virus in China and outside. It reaches a peak at the end of the month when the WHO declares coronavirus a global health emergency. There is also a sharp increase after the 15th of February when people started to realize the epidemy was becoming a pandemy with the increasing number of deaths in Europe. A peak can be seen around the 15th of March where several European countries decided to confine their population (Italy fully on the 10th, Spain 14th, France 17th, Belgium 18th). 
-<img src="/personal-blog/images/hackathlon/reddit_china_flu_submissions_activity.png" alt="evolutionofredditposts" /></p>
+<img src="/www.erikkirkegaard.com//images/hackathlon/reddit_china_flu_submissions_activity.png" alt="evolutionofredditposts" /></p>
 
 <h2 id="difference-between-countries">Difference between countries</h2>
 
 <p>The top countries discussed in the subreddits are shown in the following figure. It reflects the countries where COVID-19 cases are the highest. Of course, the USA is the most discussed country, twice more than China, as the language of the subreddits is English and most of the users are from the USA.</p>
 
-<p><img src="/personal-blog/images/hackathlon/postspercountries.png" alt="Reddit posts per country" /></p>
+<p><img src="/www.erikkirkegaard.com//images/hackathlon/postspercountries.png" alt="Reddit posts per country" /></p>
 
 <h2 id="limits-of-the-twitter-data">Limits of the Twitter data</h2>
 

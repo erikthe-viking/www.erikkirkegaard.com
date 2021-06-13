@@ -1,4 +1,4 @@
-I"&><p>Graph databases raise more and more interest as alternatives to standard SQL databases. Indeed, the graph structure may be better suited when queries are focusing on relationships between entities stored in the database. Cloud companies have spotted this trend and provide new solutions to set up graph databases in the cloud. Amazon and Google have made the choice of providing ways to connect JanusGraph to DynamoDB and BigTable respectively. Microsoft has chosen to provide its own graph database while relying on Gremlin for handling queries. Azure is using Cosmos DB as a backend for it. I have tested the Cosmos graph DB and I want here to share my first impressions.</p>
+I"C><p>Graph databases raise more and more interest as alternatives to standard SQL databases. Indeed, the graph structure may be better suited when queries are focusing on relationships between entities stored in the database. Cloud companies have spotted this trend and provide new solutions to set up graph databases in the cloud. Amazon and Google have made the choice of providing ways to connect JanusGraph to DynamoDB and BigTable respectively. Microsoft has chosen to provide its own graph database while relying on Gremlin for handling queries. Azure is using Cosmos DB as a backend for it. I have tested the Cosmos graph DB and I want here to share my first impressions.</p>
 
 <h1 id="introduction">Introduction</h1>
 
@@ -8,9 +8,9 @@
 
 <p>Microsoft provides a graph database service easy to set up and start. Indeed, in a few clicks, the server is up and running. Without exaggerating much, it is one click to create a Cosmos database and one click to create the graph DB. The Gremlin server is automatically launched with a domain name <code class="language-plaintext highlighter-rouge">YOURGRAPHNAME.graphs.azure.com</code>, ready to listen to any ssl connection on port <code class="language-plaintext highlighter-rouge">443</code>. It avoids the burden of configuring the database. You just need to choose the name of your graph (and of the collection). The <a href="https://docs.microsoft.com/en-us/azure/cosmos-db/create-graph-gremlin-console">tutorial</a> for creating the graph is straightforward (first part of the webpage).</p>
 
-<p><img src="/personal-blog/images/cosmosGraph/cosmosdbdashboard.png" alt="Screenshot of the Cosmos DB dashboard" title="The Cosmos DB dashboard" /></p>
+<p><img src="/www.erikkirkegaard.com//images/cosmosGraph/cosmosdbdashboard.png" alt="Screenshot of the Cosmos DB dashboard" title="The Cosmos DB dashboard" /></p>
 
-<p>The first impression is pretty good. The user and password for the ssl connection are automatically generated, and ready to use. In addition, no need to configure the Gremlin server or its interaction with the Cosmos database. This is quite comfortable, even more when you compare to the set up of a graph database on AWS (see my previous <a href="/personal-blog/personal-blog/janusgraph-running-on-aws-with-dynamodb/">blog post</a>).</p>
+<p>The first impression is pretty good. The user and password for the ssl connection are automatically generated, and ready to use. In addition, no need to configure the Gremlin server or its interaction with the Cosmos database. This is quite comfortable, even more when you compare to the set up of a graph database on AWS (see my previous <a href="/www.erikkirkegaard.com//www.erikkirkegaard.com/janusgraph-running-on-aws-with-dynamodb/">blog post</a>).</p>
 
 <h1 id="connecting-to-the-gremlin-server">Connecting to the Gremlin server</h1>
 
