@@ -1,32 +1,19 @@
-<!DOCTYPE html>
-<html>
-   <head>
-         <meta charset="UTF-8">
-         <link rel="stylesheet" href="/static/stylesheets/welcome-template.css">
+---
+layout: default
+---
 
-         <!-- The welcome struct (shown in the main.go code) is received within the HTML and we just need to use the . operator and retrieve the information we want -->
-         <title>Welcome {{.Name}}</title>
-   </head>
-  
-<body>
-   <div class="wrapper">
-     
-     <div class="left">
-       <img class="profile-picture" src="img/profile.jpg" width="200"/>
-       <h1 class="name">Erik Kirkegaard</h1>
-       <h4 class="subtitle">Software Engineer</h4>
-     </div>
-     
-     <div class="right">
-       <p class="bio">
-         Software Engineer, Finance nerd, Judoka and jiujiteiro. 
-       </p>
-       <ul class="social-links">
-         <li><a href="https://github.com/ianjsikes">Github</a></li>
-         <li><a href="https://medium.com/@ianjsikes">Medium</a></li>
-       </ul>
-     </div>
-     
-   </div>
- </body>
-</html>
+<div class="posts">
+  {% for post in site.posts %}
+    <article class="post">
+
+      <h1><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h1>
+
+      <div class="entry">
+        {{ post.excerpt }}
+        <a href="{{ site.baseurl }}{{ post.url }}" ><img src="{{ site.baseurl }}{{ post.thumbnail }}" />
+      </div>
+
+      <a href="{{ site.baseurl }}{{ post.url }}" class="read-more">Read More</a>
+    </article>
+  {% endfor %}
+</div>
