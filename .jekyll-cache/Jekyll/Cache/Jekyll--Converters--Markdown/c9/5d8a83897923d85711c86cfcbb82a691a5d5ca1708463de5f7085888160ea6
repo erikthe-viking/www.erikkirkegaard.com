@@ -1,0 +1,2 @@
+I".<p>Graph Databases are not yet widely used and it is still not completely straightforward to run one in the cloud. I describe here the different steps I made to install and run the JanusGraph database, using the NoSQL database DynamoDB as a storage backend. The cloud is the one from Amazon (AWS).</p>
+:ET
