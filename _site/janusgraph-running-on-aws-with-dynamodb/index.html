@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Setting up JanusGraph on AWS using EC2 and DynamoDB – Benjamin Ricaud – Data, Networks, Learning</title>
+
+        <meta charset="utf-8" />
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'>
+
+    
+    <meta name="description" content="Graph Databases are not yet widely used and it is still not completely straightforward to run one in the cloud. I describe here the different steps I made to install and run the JanusGraph database, using the NoSQL database DynamoDB as a storage backend. The cloud is the one from Amazon (AWS).
+" />
+    <meta property="og:description" content="Graph Databases are not yet widely used and it is still not completely straightforward to run one in the cloud. I describe here the different steps I made to install and run the JanusGraph database, using the NoSQL database DynamoDB as a storage backend. The cloud is the one from Amazon (AWS).
+" />
+    
+    <meta name="author" content="Benjamin Ricaud" />
+
+    
+    <meta property="og:title" content="Setting up JanusGraph on AWS using EC2 and DynamoDB" />
+    <meta property="twitter:title" content="Setting up JanusGraph on AWS using EC2 and DynamoDB" />
+    
+
+    <meta property="og:image" content="/personal-blog/images/janusGraphInstall/gremlinconsole.png">
+
+
+    <!--[if lt IE 9]>
+      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <link rel="stylesheet" type="text/css" href="/personal-blog/style.css" />
+    <link rel="alternate" type="application/rss+xml" title="Benjamin Ricaud - Data, Networks, Learning" href="/personal-blog/feed.xml" />
+
+    <!-- Created with Jekyll Now - http://github.com/barryclark/jekyll-now -->
+  </head>
+
+  <body>
+    <div class="wrapper-masthead">
+      <div class="container">
+        <header class="masthead clearfix">
+          <a href="/personal-blog/" class="site-avatar"><img src="https://raw.githubusercontent.com/bricaud/personal-blog/master/images/Benjaminroundbwsmall.png" /></a>
+
+          <div class="site-info">
+            <h1 class="site-name"><a href="/personal-blog/">Benjamin Ricaud</a></h1>
+            <p class="site-description">Data, Networks, Learning</p>
+          </div>
+
+          <nav>
+            <a href="/personal-blog/">Blog</a>
+            <a href="/personal-blog/about">About</a>
+          </nav>
+        </header>
+      </div>
+    </div>
+
+    <div id="main" role="main" class="container">
+      <article class="post">
+  <h1>Setting up JanusGraph on AWS using EC2 and DynamoDB</h1>
+
+  <div class="entry">
+    <p>Graph Databases are not yet widely used and it is still not completely straightforward to run one in the cloud. I describe here the different steps I made to install and run the JanusGraph database, using the NoSQL database DynamoDB as a storage backend. The cloud is the one from Amazon (AWS).</p>
+
+<h2 id="architecture">Architecture</h2>
+
+<p>To run the graph database, the idea is use the possibilities offered by a cloud service such as AWS. The <a href="http://janusgraph.org/">JanusGraph</a> is a scalable graph database for which you can choose a backend, in fact a NoSQL database, such as Cassandra, Hbase or BerkeleyDB, for storing the data. The license is Apache 2.0 and the project is owned by the Linux Foundation (It is a fork from the Titan graph database). The repository is <a href="https://github.com/JanusGraph/janusgraph">here</a>. Although not in the official list, it is also possible to choose Amazon’s <a href="https://en.wikipedia.org/wiki/Amazon_DynamoDB">DynamoDB</a>. This latter database is the one provided as a service in AWS. You can start it in a few clicks and you are billed on the amount of data it contains. You do not need any computer resources, everything is handled by Amazon.</p>
+
+<p>The idea is to run the JanusGraph on an <a href="https://en.wikipedia.org/wiki/Amazon_Elastic_Compute_Cloud">EC2</a> machine and make the interface with the DynamoDB for storing the data. Optionally, you may also set up an access to a disk storage (with <a href="https://en.wikipedia.org/wiki/Amazon_S3">S3</a>) where you can save the configuration files or any kind of data needed for your app.</p>
+
+<p><img src="/personal-blog/images/janusGraphInstall/janusGraphSchema.png" alt="Architecture view" title="Architecture in the cloud" /></p>
+
+<p>In order to help set up the graph database, the AWS team provides some <a href="https://github.com/awslabs/dynamodb-janusgraph-storage-backend">code and directions</a>. All is in there but the guidelines were not exactly leading to what I wanted. I did not want to run the script that launches an EC2 instance fully configured. I wanted to install JanusGraph on my already running EC2 instance and be able to customize it.</p>
+
+<h2 id="the-ec2-instance">The EC2 instance</h2>
+
+<p>First, you need an EC2 instance where to install the graph server. Go to the <a href="http://console.aws.amazon.com/">AWS console</a> and launch one (with Linux) if it is not already done. Get your keys (the .pem file) and connect to the instance using ssh. On your machine (Linux or Mac) open a terminal and run</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ssh -i path_to_your_pem_file ec2-user@ip_address_of_your_machine
+</code></pre></div></div>
+
+<p>Now you are logged in your EC2 instance, install the pre-requisites by typing in the terminal (first steps in the <a href="https://github.com/awslabs/dynamodb-janusgraph-storage-backend">awslabs’ repo</a>):</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl https://raw.githubusercontent.com/awslabs/dynamodb-janusgraph-storage-backend/master/src/test/resources/install-reqs.sh
+</code></pre></div></div>
+
+<p>The command above prints out a list of instructions which you can inspect and copy+paste the executable shell script to execute to start the pre-requisites.</p>
+
+<p>Then, clone the repository</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/awslabs/dynamodb-janusgraph-storage-backend.git &amp;&amp; cd dynamodb-janusgraph-storage-backend
+</code></pre></div></div>
+
+<p>Inside the cloned repository, the Awslab’s team provide a script for installing JanusGraph. Install the JanusGraph and gremlin server by running, (Check and modify the JanusGraph version to install if needed)</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>src/test/resources/install-gremlin-server.sh
+</code></pre></div></div>
+
+<p>When this is done, go to the folder where JanusGraph has been installed:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cd server/dynamodb-janusgraph-storage-backend-1.1.1
+</code></pre></div></div>
+
+<p>You need to configure your graph database server.
+In the <code class="language-plaintext highlighter-rouge">conf</code> folder, you will find the configuration files. You may have to modify the file <code class="language-plaintext highlighter-rouge">dynamodb.properties</code>, in particular the line</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>storage.dynamodb.client.signing-region=us-west-2
+</code></pre></div></div>
+
+<p>Put your region instead. You may do it with the nano editor:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nano conf/dynamodb.properties
+</code></pre></div></div>
+<p>Details about the possible configuration choices are given <a href="https://github.com/awslabs/dynamodb-janusgraph-storage-backend#dynamodb-keycolumnvalue-store-configuration-parameters">here</a>. If you use single-items you must add</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>storage.dynamodb.stores.edgestore.data-model=SINGLE
+storage.dynamodb.stores.graphindex.data-model=SINGLE
+storage.dynamodb.stores.janusgraph_ids.data-model=SINGLE
+storage.dynamodb.stores.system_properties.data-model=SINGLE
+storage.dynamodb.stores.systemlog.data-model=SINGLE
+storage.dynamodb.stores.txlog.data-model=SINGLE
+</code></pre></div></div>
+
+<h2 id="dynamodb">DynamoDB</h2>
+<p>You need DynamoDB and database tables configured to receive the data from JanusGraph. Go <a href="https://console.aws.amazon.com/dynamodb/home">here</a> to check whether you can have access to DynamoDB.
+To create the table, you need to run the <a href="https://github.com/awslabs/dynamodb-janusgraph-storage-backend#cloudformation-template-table">script provided here</a> in <a href="https://aws.amazon.com/cloudformation">CloudFormation</a>. You may access CoudFormation from the <a href="http://console.aws.amazon.com/">AWS console</a>, then create a new stack. Download the <a href="https://github.com/awslabs/dynamodb-janusgraph-storage-backend#cloudformation-template-table">script</a> and choose to create the stack from this file.</p>
+
+<h2 id="s3">S3</h2>
+<p>If you do not have any S3 service running go to the <a href="http://console.aws.amazon.com/">AWS console</a> to start one. You can create a bucket where the configuration file will be stored. With the correct configuration (see next section) you can access the files from the EC2 instance and copy them using the command:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>aws s3 cp source_file destination_file
+</code></pre></div></div>
+
+<h2 id="allow-interactions-between-ec2-and-dynamodb">Allow interactions between EC2 and dynamoDB</h2>
+<p>To allow EC2 to access DynamoDB and S3, create a new <a href="https://console.aws.amazon.com/iam/">IAM role</a> and <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html#attach-iam-role">attach it</a> to the EC2 instance. In this IAM role, choose full access to dynamoDB and read (or full) access to S3.</p>
+
+<h2 id="running-the-server">Running the server</h2>
+<p>Coming back to the EC2 instance, launch the server (JanusGraph uses the Gremlin server). Go to the correct folder</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cd /home/ec2-user/dynamodb-janusgraph-storage-backend/server/dynamodb-janusgraph-storage-backend-1.1.1
+</code></pre></div></div>
+<p>Run the server:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bin/gremlin-server.sh conf/gremlin-server/gremlin-server.yaml
+</code></pre></div></div>
+
+<h2 id="accessing-the-graph-database">Accessing the graph database</h2>
+<p>In the same directory, you may run the Gremlin console to test and query the database:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bin/gremlin.sh
+</code></pre></div></div>
+
+<p>and inside the console, connect to the server:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>:remote connect tinkerpop.server conf/remote.yaml session
+:remote console
+</code></pre></div></div>
+
+<p>You should be able to query the graph database. For example, you can load a part of the <a href="https://github.com/awslabs/dynamodb-janusgraph-storage-backend#load-a-subset-of-the-marvel-universe-social-graph">Marvel database</a>.</p>
+
+<h2 id="adding-python-to-the-server">Adding Python to the server</h2>
+<p><em>Section added on the 19th of September 2017</em></p>
+
+<p>If you need to query the graph database server using Python, you have to make an additional configuration step for the server ( besides the <a href="https://pypi.python.org/pypi/gremlinpython">gremlin python</a> module to include in the Python code).</p>
+
+<p>First note that the following is for JanusGraph version 0.1.1 and Gremlin Server 3.2.3, which is the version available for download at the time of writing.
+First you must load the Python libraries using:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bin/gremlin-server.sh -i org.apache.tinkerpop gremlin-python 3.2.3
+</code></pre></div></div>
+<p>Make sure you are using the correct version of gremlin-python. I made the mistake of installing 3.2.5 instead and it did not work. I found the correct answer <a href="https://groups.google.com/forum/#!topic/janusgraph-dev/_EbTdatQ39k">here</a>.
+Then the gremlin server configuration file must be changed (usually called <code class="language-plaintext highlighter-rouge">gremlin-server.yaml</code>). <code class="language-plaintext highlighter-rouge">gremlin-python</code> must be added in the <code class="language-plaintext highlighter-rouge">scriptEngines</code> section:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>scriptEngines: {
+  gremlin-groovy: {
+    imports: [java.lang.Math],
+    staticImports: [java.lang.Math.PI],
+    scripts: [scripts/generate-modern.groovy]},
+  gremlin-jython: {},
+  gremlin-python: {}
+}
+</code></pre></div></div>
+
+  </div>
+
+  <div class="date">
+    Written on September 13, 2017
+  </div>
+
+  
+<div class="comments">
+	<div id="disqus_thread"></div>
+	<script type="text/javascript">
+
+	    var disqus_shortname = 'https-bricaud-github-io-personal-blog';
+
+	    (function() {
+	        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+	        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+	        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	    })();
+
+	</script>
+	<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+
+</article>
+
+    </div>
+
+    <div class="wrapper-footer">
+      <div class="container">
+        <footer class="footer">
+          
+<a href="mailto:benjamin.ricaud@gmail.com"><i class="svg-icon email"></i></a>
+
+
+<a href="https://github.com/bricaud"><i class="svg-icon github"></i></a>
+
+<a href="https://www.linkedin.com/in/benjaminricaud"><i class="svg-icon linkedin"></i></a>
+
+
+<a href="https://www.twitter.com/GBR_data"><i class="svg-icon twitter"></i></a>
+
+
+
+        </footer>
+      </div>
+    </div>
+
+    
+	<!-- Google Analytics -->
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-111576648-1', 'auto');
+		ga('send', 'pageview', {
+		  'page': '/personal-blog/janusgraph-running-on-aws-with-dynamodb/',
+		  'title': 'Setting up JanusGraph on AWS using EC2 and DynamoDB'
+		});
+	</script>
+	<!-- End Google Analytics -->
+
+
+  </body>
+</html>

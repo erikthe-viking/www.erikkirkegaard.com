@@ -1,0 +1,703 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="/personal-blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/personal-blog/" rel="alternate" type="text/html" /><updated>2021-06-13T11:30:25-05:00</updated><id>/personal-blog/feed.xml</id><title type="html">Benjamin Ricaud</title><subtitle>Data, Networks, Learning</subtitle><entry><title type="html">Hackathon project, tracking fake news in social networks</title><link href="/personal-blog/Tracking-fake-news-hackathlon-summary/" rel="alternate" type="text/html" title="Hackathon project, tracking fake news in social networks" /><published>2020-04-09T00:00:00-05:00</published><updated>2020-04-09T00:00:00-05:00</updated><id>/personal-blog/Tracking-fake-news-hackathlon-summary</id><content type="html" xml:base="/personal-blog/Tracking-fake-news-hackathlon-summary/">&lt;p&gt;On April 3-6 2020 I took part in the Hackathon &lt;a href=&quot;https://covid19.lauzhack.com/&quot;&gt;LauzHack against COVID-19&lt;/a&gt; organized by the LauzHack association and EPFL. It was an interesting experience and I would like to summarize here the results we got during the 3 days on our project, as well as my impressions.&lt;/p&gt;
+
+&lt;p&gt;I jumped on the occasion to propose a project related to the analysis of fake news and controversial topics about the COVID-19. The project was named ‘Tracking fake news in social networks’. Indeed, I have been working on a research project since September 2019 whose goal is to detect and analyse controversies in social networks. It is a joint research project between the Academy of Journalism at Neuchatel, the RTS (Swiss Radio and Television) and our lab, the LTS2 at EPFL. I thought it would be a good opportunity to share our knowledge about this phenomenon and make some concrete contributions to fight misinformation.&lt;/p&gt;
+
+&lt;p&gt;I was glad to see people supporting this project and commenting on it. About 25 participants joined the project to see what it was about. Some of them were really concerned by the topic and willing to help, worried about the enormous amount of fake news and misinformation on the coronavirus. Some others were just curious about how we would process and tackle this challenge. Overall, 6-7 participants were really active, coding scripts or analysing the data. Due to the circumstances, the hackathon was a purely online one, without physical interactions. Everyone was working from home. Interestingly, all the interactions took place using Slack and video-conference and it worked! However, I had the feeling that it was less efficient than an onsite Hackathon. From time to time, participants (including myself) would disappear for a short or long period of time. Of course, distractions are numerous at home and no-one is watching you :).&lt;/p&gt;
+
+&lt;h1 id=&quot;goal&quot;&gt;Goal&lt;/h1&gt;
+
+&lt;p&gt;The goal of the project was to collect posts in different social networks and detect fake news or controversies about the COVID-19. Several objectives were defined with different level of difficulties. The most ambitious goal was to detect automatically fake news. Intermediate objectives were to collect the fake news of the past weeks and make a historical timeline about them, or at least to produce some statistics about controversies and news concerning the COVID-19 in social networks.&lt;/p&gt;
+
+&lt;h1 id=&quot;method&quot;&gt;Method&lt;/h1&gt;
+
+&lt;p&gt;The difficult task was to detect fake news (or controversies) among the huge amount of data. At first sight, this looks challenging as human themselves are often unable to spot them. However, firstly several &lt;a href=&quot;https://science.sciencemag.org/content/359/6380/1146&quot;&gt;scientific studies&lt;/a&gt; have shown that fake news are usually more popular, spread more and faster in the social network. This indirect sign suggests focusing on the spreading behaviour rather than on the content of a post or tweet. Secondly, particular users, such as conspiracists, extremists, have a tendency to heavily share fake news. Identifying and selecting such accounts or channels should help in our task.&lt;/p&gt;
+
+&lt;p&gt;After a short discussion, and based on participants preferences, Reddit and Twitter were selected as the social networks we would investigate.
+We organized the project into 2 focused subteams and an additional group of participants, making the connection between the teams and suggesting ideas in an ‘agile’ way. The first subteam was dedicated to the collection of Reddit data related to the COVID and the other to the collection of Tweets. For that, they used Python and the APIs provided by the 2 platforms.&lt;/p&gt;
+
+&lt;p&gt;Experience from the research project was very helpful to get a quick start. We had already analyzed several subreddits for the project and the choice was easy. We quickly oriented our focus on subreddits related to the coronavirus. We knew 3 interesting ones, each of them with a different ‘editorial line’. The subreddit r/China_flu has more posts sharing controversial topics, r/Coronavirus is rather neutral and r/COVID-19 contains more scientific discussions. In order to design an automatic detection, tagging posts and topics as controversial, neutral or scientific would be indeed valuable. We collected posts and links inside posts, especially links referring to tweets. The list of tweets in each subreddit was then given to the second team, dedicated to the extraction of tweets. Analysis of tweets was then performed by all participants interested.&lt;/p&gt;
+
+&lt;h1 id=&quot;the-results&quot;&gt;The results&lt;/h1&gt;
+
+&lt;p&gt;The analysis of Tweeter and Reddit data gave us several insights about the Coronavirus and the sharing of information inside these social networks. I am happy to share it here.&lt;/p&gt;
+
+&lt;h2 id=&quot;graph-of-twitter-users&quot;&gt;Graph of Twitter users&lt;/h2&gt;
+
+&lt;p&gt;The first results came directly from the tools developed for the research project. We made the list of Twitter users obtained from the references in the 3 subreddits. A graph was created from it, you can see it below. The nodes are users of the list and users mentioned by the users in the list. Connections are made between them if one of them has mentioned or retweeted the other at least twice. This graph shows the organization of the social network around users sharing news about the COVID19.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/personal-blog/images/hackathlon/redditgraphwithclusters3.png&quot; alt=&quot;Graph of tweeter users&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The first fact to notice is that this network is not made of isolated clusters. There are different communities (at least the 3: diffusing controversies, neutral and scientific info) but there is no clear separation between them. Users do not really isolate from each other, and regular news are diffused by all, even by extremists or conspiracists. This is shown by the fact that established institutions such as WHO and CDC as well as regular news, the NY Times, Washington Post or CNN are situated at the centre of the graph (light green area). This is unusual as conspiracists are often isolated from the rest and form (mis)information bubbles.&lt;/p&gt;
+
+&lt;p&gt;A closer look reveals regions in the network that have different topics. They are situated at the periphery. These regions are indicated on the figure by coloured circles. Some parts focus on the events of specific countries or areas (the UK on top, India on the right and New York at the bottom). Other regions are distinguished by their orientation. A region in light red concentrates several accounts sharing controversies. We can see the account of the US president in this region as they often refer to him.&lt;/p&gt;
+
+&lt;p&gt;An &lt;a href=&quot;http://miz.space/lauzhack/reddit-retweet/&quot;&gt;interactive version&lt;/a&gt; is available where the graph can be explorer in more details.&lt;/p&gt;
+
+&lt;h2 id=&quot;word-cloud&quot;&gt;Word cloud&lt;/h2&gt;
+
+&lt;p&gt;The second result was obtained by extracting the text of all the tweets extracted from Reddit. Selecting the most popular keywords (made of one, two or three words), we got this interesting word cloud having the shape of a virus.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/personal-blog/images/hackathlon/23312.tif_wc.png&quot; alt=&quot;Word cloud from tweets about COVID-19&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;No surprise, the most popular expressions contain ‘coronavirus’, ‘outbreak’ or ‘pandemic’.&lt;/p&gt;
+
+&lt;h2 id=&quot;evolution-of-the-number-of-tweets&quot;&gt;Evolution of the number of tweets&lt;/h2&gt;
+
+&lt;p&gt;We also plotted the number of tweets per day appearing in the subreddits, concerning particular countries.
+&lt;img src=&quot;/personal-blog/images/hackathlon/evolutionoftweets.png&quot; alt=&quot;Evolution of the number of tweets&quot; /&gt;
+&lt;img src=&quot;/personal-blog/images/hackathlon/evolutionoftweets_woUS.png&quot; alt=&quot;Evolution of the number of tweets not including China and the US&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The US is over-represented as the subreddits are in English and most of its users are from the US. That is why we provide a second plot without it. On the first plot, it is interesting to notice the high number of tweets concerning China at the beginning of the epidemy. One can remember the &lt;a href=&quot;https://en.wikipedia.org/wiki/Misinformation_related_to_the_2019%E2%80%9320_coronavirus_pandemic#Accidental_leakage&quot;&gt;numerous fake news&lt;/a&gt; at that time about how the virus was supposed to be a Chinese biological weapon, an accidental leakage from a Wuhan lab or due to 5G. Videos of the streets of Wuhan and overcrowded hospitals went viral too.&lt;/p&gt;
+
+&lt;p&gt;Concerning the other countries, on the second plot, peaks can be seen when particular events or news about the virus appears. For example, Italy red curve peaks on the 25/02 when north of Italy was confined and on the 10/03 when all of Italy was confined.&lt;/p&gt;
+
+&lt;p&gt;Outside of Twitter, the number of posts per day in the controversial subreddit r/china_flu (next figure) shows several peaks between January and April. It highlights periods when major events occurred, triggering many discussions and a higher exchange of information. Starting from mid-January the subreddit users are increasingly sharing information about the situation in Wuhan and the spreading of the virus in China and outside. It reaches a peak at the end of the month when the WHO declares coronavirus a global health emergency. There is also a sharp increase after the 15th of February when people started to realize the epidemy was becoming a pandemy with the increasing number of deaths in Europe. A peak can be seen around the 15th of March where several European countries decided to confine their population (Italy fully on the 10th, Spain 14th, France 17th, Belgium 18th). 
+&lt;img src=&quot;/personal-blog/images/hackathlon/reddit_china_flu_submissions_activity.png&quot; alt=&quot;evolutionofredditposts&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;difference-between-countries&quot;&gt;Difference between countries&lt;/h2&gt;
+
+&lt;p&gt;The top countries discussed in the subreddits are shown in the following figure. It reflects the countries where COVID-19 cases are the highest. Of course, the USA is the most discussed country, twice more than China, as the language of the subreddits is English and most of the users are from the USA.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/personal-blog/images/hackathlon/postspercountries.png&quot; alt=&quot;Reddit posts per country&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;limits-of-the-twitter-data&quot;&gt;Limits of the Twitter data&lt;/h2&gt;
+
+&lt;p&gt;Twitter is doing a good job of removing fake news from its platform. Several tweets found in Reddit were not available anymore to us. That may explain why we did not get as many fake news as we expected.&lt;/p&gt;
+
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
+
+&lt;p&gt;The page of our project can be found &lt;a href=&quot;https://devpost.com/software/tracking-fake-news-in-social-networks-proposal&quot;&gt;here&lt;/a&gt;. In there, the information is minimal as we were short in time to prepare a good communication about our results. We must also say that designing an automatic detection of fake news was highly ambitious for a 3 days Hackathon.&lt;/p&gt;
+
+&lt;p&gt;What we obtained is more modest, but it gave interesting information on social networks, Reddit and Twitter, and how the information about COVID-19 is treated and shared.
+It also gave us a boost of motivation seeing the enthusiasm of people around and the first results that brought more questions than answers (in particular about fake news!). This was definitely useful for our research project!&lt;/p&gt;</content><author><name></name></author><category term="Scientific projects" /><category term="Social networks" /><category term="fake news" /><category term="data science" /><category term="graphs" /><category term="hackathon" /><summary type="html">On April 3-6 2020 I took part in the Hackathon LauzHack against COVID-19 organized by the LauzHack association and EPFL. It was an interesting experience and I would like to summarize here the results we got during the 3 days on our project, as well as my impressions.</summary></entry><entry><title type="html">Les démarches pour la cloture de l’exercice comptable</title><link href="/personal-blog/cloture-exercice-comptable/" rel="alternate" type="text/html" title="Les démarches pour la cloture de l’exercice comptable" /><published>2017-12-30T00:00:00-06:00</published><updated>2017-12-30T00:00:00-06:00</updated><id>/personal-blog/cloture-exercice-comptable</id><content type="html" xml:base="/personal-blog/cloture-exercice-comptable/">&lt;p&gt;Chaque année, les entreprises doivent faire un bilan et communiquer des informations clefs aux diverses administrations. Pour la première année d’exercice d’Evia Cybernetics, j’ai décidé de faire cela moins même. Le but était à la fois de réduire les dépenses et d’apprendre un peu les bases de la comptabilité et de l’administration d’une entreprise. J’ai appris beaucoup de choses. Je relate ici mon expérience sur les différentes étapes pour clore un exercice comptable.&lt;/p&gt;
+
+&lt;h1 id=&quot;quel-bilan&quot;&gt;Quel bilan?&lt;/h1&gt;
+
+&lt;p&gt;Evia Cybernetics est un SAS. Certes, c’est une petite SAS, avec un chiffre d’affaire de 8000 euros cette année, mais c’est bien une SAS assujettie à l’impôt sur les sociétés. Une entreprise de ce type doit chaque année faire un bilan, on dit aussi clore l’exercice comptable. La date de ce bilan est spécifiée dans les statuts de la société. C’est l’occasion de faire le point sur l’entreprise avec le calcul des bénéfices de l’année mais aussi de résumer son activité avec une longue liste de chiffres.&lt;/p&gt;
+
+&lt;p&gt;Ce bilan sert au calcul de l’impôt et les chiffres clefs sont aussi là pour permettre l’évaluation de la santé de l’entreprise par les dirigeants et actionnaires mais aussi par un plus large public (à travers le dépôt au greffe).&lt;/p&gt;
+
+&lt;p&gt;Habituellement, ce travail de bilan est fait par un expert comptable mandaté par l’entreprise, ou par le comptable de l’entreprise si elle a les moyens d’en avoir un. On peut aussi faire sa comptabilité soi-même, même si cela est assez complexe. J’ai tenté l’expérience et je dois avouer que la tâche n’est pas si simple. J’ai été aidé par le logiciel open source &lt;a href=&quot;https://www.openconcerto.org/&quot;&gt;Openconcerto&lt;/a&gt;. Ce logiciel est assez basique et on trouve très peu de documentation en ligne. On est donc assez vite limité mais pour une petite entreprise il est suffisant.&lt;/p&gt;
+
+&lt;p&gt;Pour cette année, ma comptabilité était facilitée. En effet, j’ai eu peu de clients, peu de factures et aucun salarié. La comptabilité était donc réduite au strict minimum.&lt;/p&gt;
+
+&lt;p&gt;J’ai séparé en 3 parties les démarches à faire pour cloturer son exercice. Elles sont liées mais font intervenir différentes entités et personnes.&lt;/p&gt;
+
+&lt;h1 id=&quot;les-impots&quot;&gt;Les impots&lt;/h1&gt;
+
+&lt;p&gt;&lt;img src=&quot;/personal-blog/images/exerciceComptable/imagecerfa.png&quot; alt=&quot;formulaire impots&quot; title=&quot;formulaire impots&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Une des principales raisons du bilan et pour le calcul de l’impôt. Pour ma SAS, je dois remplir plusieurs fiches cerfa, regroupées dans ce qui est appelé “&lt;a href=&quot;https://www.impots.gouv.fr/portail/formulaire/2033-sd/bilan-simplifie&quot;&gt;la liasse fiscale&lt;/a&gt;”. Ce sont les formulaires 2033-A à 2033-G (une page chacun). Il y a aussi le formulaire 2065-SD qui résume les données importantes pour le calcul de l’impôt. La déclaration doit être faite dans les 3 mois après la cloture de l’exercice.&lt;/p&gt;
+
+&lt;p&gt;Le logiciel Openconcerto, a rempli automatiquement le bilan (2033-A) et le compte de résultats (2033-B). J’ai dû compléter le compte de résultats car j’ai le statut &lt;a href=&quot;https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=5FC3EE6C1A5F22E8450F0F89536A1068.tplgfr29s_2?idArticle=LEGIARTI000031011840&amp;amp;cidTexte=LEGITEXT000006069577&amp;amp;categorieLien=id&amp;amp;dateTexte=&quot;&gt;Jeune Entreprise Innovante&lt;/a&gt; qui permet une exonération d’impôts la première année.
+Le formulaire 3 (2033-C) concerne les immobilisations et leur amortissement. J’ai dû compléter cette feuille car j’ai acheté du matériel informatique (qui s’amortit sur 3 ans), et OpenConcerto ne calcule pas les amortissements. J’ai coché “néant” pour les feuilles 2033-D et 2033-G. J’ai rempli le formulaire 2033-E (feuille 5) même si je n’ai pas à payer la CVAE avec mon petit chiffre d’affaire. J’ai simplement reporté les chiffres du feuillet 2 (2033-B). Avec cela il faut rajouter les formulaires 2059-H, 2059-I et 2069-RCI. Les 2 premiers concernent les filiales et s’addressent aux grandes entreprises, j’ai coché “néant” pour les 2. Quant au 2069-RCI, qui concerne certains crédits et réductions d’impots, j’ai choisi “néant” car la réduction d’impots “Jeune Entreprise Innovante” ne rentre pas dans le cadre de ce formulaire (c’est déjà déclaré dans les formulaires 2065 et 2033-B).&lt;/p&gt;
+
+&lt;p&gt;Comme il faut télédéclarer toute ces informations, il faut remplir les formulaires en ligne sur &lt;a href=&quot;https://www.impots.gouv.fr/portail/&quot;&gt;le site des impots&lt;/a&gt;. J’ai eu un peu de mal car le lien vers les formulaires de déclaration n’apparaissaient pas. Après quelques coups de téléphone aux impots, clicks un peu partout et quelques jours d’attente, le lien est apparu mais sans vraiment savoir trop pourquoi… Le service en ligne n’est pas encore tout à fait au point… D’ailleurs j’avais accès à des formulaires de déclaration d’acomptes des impots qui n’avait pas lieu d’être car c’était ma première année d’exercice. Je les ai rempli avec des zéros et c’est peut être ca qui a débloqué ma déclaration de résultat par la suite.&lt;/p&gt;
+
+&lt;h1 id=&quot;lassemblée-générale&quot;&gt;l’Assemblée générale&lt;/h1&gt;
+
+&lt;p&gt;Comme je suis l’associé unique, le PV d’assemblée générale se réduit à un PV de décision de l’associé unique. Il est inspiré de &lt;a href=&quot;http://www.sas-sasu.info/sas-modele-de-pv-de-lassemblee-annuelle-pour-lapprobation-des-comptes/&quot;&gt;ce modèle&lt;/a&gt;. Dans le PV, j’approuve les comptes (ceci est facultatif puisque l’unique associé fait les comptes et donc est supposé être d’accord avec lui-même!) et je statue sur &lt;a href=&quot;https://www.l-expert-comptable.com/a/37382-l-affectation-du-resultat-benefices-en-dividendes-ou-reserve.html&quot;&gt;l’affectation des bénéfices&lt;/a&gt;. Cette année, je garde les bénéfices dans l’entreprise: je remplie la &lt;a href=&quot;https://www.lecoindesentrepreneurs.fr/reserve-legale-definition-dotation-fonctionnement/&quot;&gt;réserve légale&lt;/a&gt; (10% du capital social) et je fais un report à nouveau du reste. Je ne me verse donc aucun dividende.&lt;/p&gt;
+
+&lt;p&gt;Pour comptabiliser l’affectation des résultats dans un logiciel de comptabilité, &lt;a href=&quot;https://www.compta-facile.com/comptabilisation-de-l-affectation-du-resultat/&quot;&gt;voici comment procéder&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;L’assemblée générale doit être faite au plus tard 6 mois après la cloture de l’exercice.&lt;/p&gt;
+
+&lt;h1 id=&quot;le-greffe-du-tribunal-de-commerce&quot;&gt;Le greffe du tribunal de commerce&lt;/h1&gt;
+
+&lt;p&gt;&lt;img src=&quot;/personal-blog/images/exerciceComptable/imagegreffe.jpeg&quot; alt=&quot;Image greffe&quot; title=&quot;Image greffe&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;La liasse fiscale remplie pour la déclaration des résultats aux impôts &lt;a href=&quot;https://www.infogreffe.fr/informations-et-dossiers-entreprises/dossiers-thematiques/vie-de-entreprise/depot-des-comptes-sociaux.html?onglet=2&quot;&gt;peut être utilisée&lt;/a&gt; pour transmettre les informations demandées par le greffe. Il faut le bilan (formulaire 2033-A) et le compte de résultats (2033-B) contenus dans la liasse. A ceci il faut rajouter “l’annexe” &lt;a href=&quot;https://www.compta-facile.com/simplifications-comptables-pour-les-micros-et-petites-entreprises/&quot;&gt;sauf si l’entreprise est très petite&lt;/a&gt; (micro-entreprise) et c’est le cas d’Evia. Dernier document, le PV de décision sur la proposition et résolution d’affectation votée (PV de l’assemblée générale). La liste des documents est &lt;a href=&quot;https://www.infogreffe.fr/documents/10179/0/liste_pieces_depot_comptes.pdf/a76662fc-dce6-4718-b79b-c774d7f8e6e9&quot;&gt;ici&lt;/a&gt;. Il ne faut pas oublier non plus que le dépot et payant. Comptez une cinquantaine d’euros.&lt;/p&gt;
+
+&lt;p&gt;Les documents doivent être déposés au plus tard un mois après l’AG qui statue sur les comptes. On peut déposer ses documents en ligne sur le site &lt;a href=&quot;www.infogreffe.fr&quot;&gt;infogreffe&lt;/a&gt;, comme je l’ai fait.&lt;/p&gt;
+
+&lt;h1 id=&quot;les-autres-déclarations-de-décembre&quot;&gt;Les autres déclarations de décembre&lt;/h1&gt;
+
+&lt;p&gt;Il ne faut pas oublier de déclarer sa TVA en décembre avec les formulaires 3517SCA12, 3514 pour les acomptes et 3517DDR pour les remboursements.
+Il faut aussi payer le CFE (cotisation foncière des entreprises) avant mi-décembre.
+On retrouve les 2 sur le site des impots.&lt;/p&gt;</content><author><name></name></author><category term="entreprise" /><category term="comptabilité" /><category term="francais" /><summary type="html">Chaque année, les entreprises doivent faire un bilan et communiquer des informations clefs aux diverses administrations. Pour la première année d’exercice d’Evia Cybernetics, j’ai décidé de faire cela moins même. Le but était à la fois de réduire les dépenses et d’apprendre un peu les bases de la comptabilité et de l’administration d’une entreprise. J’ai appris beaucoup de choses. Je relate ici mon expérience sur les différentes étapes pour clore un exercice comptable.</summary></entry><entry><title type="html">En route pour le Bac</title><link href="/personal-blog/en-route-pour-le-bac/" rel="alternate" type="text/html" title="En route pour le Bac" /><published>2017-12-03T00:00:00-06:00</published><updated>2017-12-03T00:00:00-06:00</updated><id>/personal-blog/en-route-pour-le-bac</id><content type="html" xml:base="/personal-blog/en-route-pour-le-bac/">&lt;p&gt;&lt;em&gt;For my english readers, this post is in French. It is talking about student data from the French education system so I thought it would be better to write it in French.&lt;/em&gt;
+Je suis récemment retourné au Lycée. Non pas comme élève mais comme professeur.
+Pendant 2 mois j’ai enseigné les mathématiques (ou du moins j’ai essayé!) et en regardant les notes des différents contrôles, je dois dire que j’étais un peu perplexe. En effet, la distribution des notes autour de la moyenne est singulière. Elle semble avoir parfois une forme gaussienne, plus ou moins étalée et d’autres fois une forme plus complexe avec, semble-t-il, une séparation en 2 groupes (2 Gaussiennes). Comme j’adore l’analyse de données et que j’ai tous les outils à ma disposition avec Python, j’ai plongé dans l’analyse des notes. J’ai utilisé non seulement des statistiques que je leur ai enseignés (au programme du Bac), mais c’était aussi l’occasion d’utiliser mes algorithmes favoris d’apprentissage automatique et intelligence artificielle, ici le modèle de mélange gaussien. Les résultats et l’analyse en elle-même sont intéressants et c’est pour ca que je les partage. Voilà ce que j’ai découvert…&lt;/p&gt;
+
+&lt;h1 id=&quot;introduction&quot;&gt;Introduction&lt;/h1&gt;
+
+&lt;p&gt;Comme mon entreprise a encore du mal à décoller, j’ai décidé de chercher des alternatives. Et récemment je suis tombé sur l’annonce d’un lycée qui cherchait un prof de math à mi-temps pour 2 mois. Ca me semblait parfait pour me changer un peu les idées et sortir du code informatique que je voyais toute la journée.&lt;/p&gt;
+
+&lt;p&gt;C’est une drôle d’expérience pour moi. Je dois avouer que je n’étais pas préparé à ca. J’ai appris beaucoup de choses durant ces 2 mois au contact des élèves. J’ai pu remarquer une première chose, les élèves n’ont pas le niveau de maturité auquel je m’attendais. Je les ai pris pour des adultes, je leur ai donné trop de liberté, et certains en ont profité. A la fin, bien sûr, cela se voit sur les notes.&lt;/p&gt;
+
+&lt;p&gt;J’ai enseigné les mathématiques aux élèves de la filière Bac Pro d’un lycée, donc les classes de seconde, première et terminale Bac Pro. Cette filière est particulière dans le sens où il y a une proportion plus grande d’élèves ayant des difficultés avec le système scolaire standard par rapport aux filières générales. Le Bac Pro est une voie plus rapide vers la fin des études et la vie active. Il y a aussi des élèves qui n’ont pas de difficulté particulière et qui ont fait le choix de cette filière par goût.&lt;/p&gt;
+
+&lt;p&gt;J’ai trouvé un niveau très hétérogène qui va des bons élèves sérieux et motivés jusqu’aux élèves en grande difficulté et totalement fermés aux mathématiques. Ces derniers ont toujours été en échec en mathématiques et ont baissé les bras, comme ils me l’ont dit en classe. Je me suis demandé comment ces personnes là évolueraient à l’approche du Bac. Prendraient-elles conscience de l’enjeu et se mettraient-elles au travail en classe de première ou de terminale? j’ai trouvé un début de réponse, en étudiant la distribution des notes de chaque classe.&lt;/p&gt;
+
+&lt;h1 id=&quot;avertissement&quot;&gt;Avertissement&lt;/h1&gt;
+
+&lt;p&gt;L’analyse statistique porte sur 2 mois de cours et 3 classes de 30 élèves chacune. L’effectif est donc assez faible. Le lecteur ne doit rien conclure hâtivement car les résultats sur un si faible échantillon peuvent être simplement dus à des fluctuations statistiques.&lt;/p&gt;
+
+&lt;h1 id=&quot;but-de-lanalyse&quot;&gt;But de l’analyse&lt;/h1&gt;
+
+&lt;p&gt;On va étudier la distribution des notes des élèves autour de la moyenne. Ce que l’on s’attend à trouver, c’est une &lt;a href=&quot;https://fr.wikipedia.org/wiki/Fonction_gaussienne&quot;&gt;distribution gaussienne&lt;/a&gt;, la fameuse courbe en cloche que l’on voit sur la figure ci-dessous. On l’appelle encore “&lt;a href=&quot;https://fr.wikipedia.org/wiki/Loi_normale&quot;&gt;loi normale&lt;/a&gt;”.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/personal-blog/images/lycee/loinormale.svg&quot; alt=&quot;Loi normale&quot; title=&quot;Loi normale par Nusha sur Wikipedia slovène — Transféré de sl.wikipedia à Commons., GFDL&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Dans une telle configuration, beaucoup d’élèves se situent autour de la moyenne de la classe et plus les notes sont élevés plus le nombre d’élèves qui ont de telles notes diminue. De la même manière pour les mauvaises notes. Il faut imaginer que sur la figure, le centre de la courbe (le zéro) est en fait la note moyenne. Le symbole sigma est l’écart type et permet de caractériser l’étalement de la distribution autour de la moyenne. Si toutes les notes sont concentrées dans un petit intervalle autour de la moyenne, sigma aura une valeur faible. Pour les classes de Bac Pro, on va estimer ce sigma et vérifier aussi que l’on a bien une gaussienne.&lt;/p&gt;
+
+&lt;h1 id=&quot;les-données&quot;&gt;Les Données&lt;/h1&gt;
+
+&lt;p&gt;Pour les seconde Pro (2PRO), la moyenne de chaque élève a été obtenue avec 2 interrogations coefficient 2 et un devoir à la maison coefficient 1. J’ai été plutôt indulgent sur les notes et la moyenne de la classe est à 11.39. Ci-dessous, on peut voir la distribution des notes autour de la moyenne. L’histogramme montre le nombre d’élèves pour chaque note de 0 à 20. Par exemple, 2 élèves ont une note comprise entre 7 et 8 (les moins bonnes notes).&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/personal-blog/images/lycee/distribution2PRO.png&quot; alt=&quot;Distribution 2PRO&quot; title=&quot;Distribution 2PRO&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;La distribution n’est pas une belle courbe en cloche et c’est normal. Quand on a peu de données (ici les notes de 30 élèves sur 3 interrogations), on a de fortes fluctuations statistiques. Un peu comme quand on fait des enfants, on a une chance sur 2 d’avoir une fille mais si on a 6 enfants, il est bien possible d’avoir 4, 5 voire même 6 filles. On a quand même, grossièrement, une allure de gaussienne, avec beaucoup d’élèves qui ont des notes autour de la moyenne de la classe, puis une diminution assez forte quand on s’en éloigne.&lt;/p&gt;
+
+&lt;p&gt;Pour les premières (1PRO), la moyenne a été calculée à partir de 2 interrogations. La moyenne est de 7.9. J’ai été plus sévère sur les notes mais je ne crois pas que ca ait eu un impact sur leur travail. Voici la distribution des notes.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/personal-blog/images/lycee/distribution1PRO.png&quot; alt=&quot;Distribution 1PRO&quot; title=&quot;Distribution 1PRO&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;On remarque tout de suite que la distribution est plus étalée. Si on fait l’hypothèse que c’est une gaussienne, l’écart type est ici plus grand. Néanmoins, la distribution ne ressemble pas vraiment à une cloche. Il y aurait plutôt 2 bosses de part et d’autre de la moyenne, un peu comme s’il y avait 2 gaussiennes côte à côte. Ce pourrait être comme dans la figure ci-dessous (prise sur &lt;a href=&quot;https://fr.wikipedia.org/wiki/Mod%C3%A8le_de_m%C3%A9langes_gaussiens&quot;&gt;wikipedia&lt;/a&gt;):&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/personal-blog/images/lycee/Double_Gauss.png&quot; alt=&quot;Distribution double gaussienne&quot; title=&quot;Distribution double gaussienne&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;La courbe bleue est la somme des fonctions gaussiennes rouge et verte. Remarquez comme l’allure de cette courbe bleue ressemble à la distribution des notes, avec 2 “bosses” est un creux au milieu.&lt;/p&gt;
+
+&lt;p&gt;Voyons maintenant ce que donne la distribution pour les terminales (TPRO). On a ici seulement une interrogation.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/personal-blog/images/lycee/distributionTPRO.png&quot; alt=&quot;Distribution TPRO&quot; title=&quot;Distribution TPRO&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Le phénomène observé en 1PRO est ici encore plus criant. Il semble y avoir 2 groupes dans la classe: le groupe des bons élèves (entre 11 et 16) et le groupe des élèves qui ont décroché (majoritairement entre 4 et 8). On peut se demander d’abord si c’est une effet statistique et ensuite s’il s’agit d’une évolution des élèves vers 2 groupes distincts, au fur et à mesure des années de lycée. On va maintenant essayer de confirmer ou d’infirmer ce phénomène.&lt;/p&gt;
+
+&lt;h1 id=&quot;estimation-des-distributions-à-laide-dapprentissage-automatique&quot;&gt;Estimation des distributions à l’aide d’apprentissage automatique&lt;/h1&gt;
+
+&lt;p&gt;Pour trouver la courbe gaussienne la plus proche des données, il suffit de calculer la moyenne et l’écart-type des données (ces 2 fonctions sont disponible sur les calculatrices scientifiques, Excel ou bien en langage Python). On peut ainsi tracer la gaussienne paramétrée par ces 2 valeurs.
+Si les données sont issues d’une somme de plusieurs distributions gaussiennes, cela se complique un petit peu. Mais il existe des algorithmes pour résoudre ce problème, pourvu qu’on leur spécifie le nombre de gaussiennes à trouver. J’utilise ici le &lt;a href=&quot;https://fr.wikipedia.org/wiki/Mod%C3%A8le_de_m%C3%A9langes_gaussiens&quot;&gt;modèle de mélanges gaussiens&lt;/a&gt;. On doit faire l’hypothèse que les données sont issues de plusieurs groupes indépendants, suivant chacun une loi normale avec une moyenne et un écart type différent. Les informations à donner pour construire le modèle sont les notes et le nombre de groupes (le nombre de gaussiennes) que l’on suppose avoir dans la classe. Le programme va automatiquement donner les moyennes et écart types pour chaque groupe. les valeurs trouvées sont celles qui maximisent une quantité qui s’appelle la &lt;a href=&quot;https://fr.wikipedia.org/wiki/Maximum_de_vraisemblance&quot;&gt;vraisemblance&lt;/a&gt;. L’algorithme en lui-même est intéressant mais je ne vais pas l’expliquer ici. Il mériterait un article de blog pour lui tout seul…&lt;/p&gt;
+
+&lt;p&gt;Ce modèle a bien sûr des limites. Il ne trouve pas forcement le maximum global de la vraisemblance et peut converger sur un maximum local. De plus, le nombre de notes reste faible pour faire une étude statistique et cela a une influence sur les résultats du modèle. Les algorithmes d’apprentissage automatiques ne font pas des miracles et restent tributaires de la qualité et la quantité des données.&lt;/p&gt;
+
+&lt;p&gt;En pratique, avec Python, on peut utiliser le module &lt;a href=&quot;http://scikit-learn.org&quot;&gt;scikit-learn&lt;/a&gt; qui contient un ensemble assez complet de programmes d’&lt;a href=&quot;https://fr.wikipedia.org/wiki/Apprentissage_automatique&quot;&gt;apprentissage automatique&lt;/a&gt; (machine learning). On y trouve une version du &lt;a href=&quot;http://scikit-learn.org/stable/modules/generated/sklearn.mixture.GaussianMixture.html#sklearn.mixture.GaussianMixture&quot;&gt;modèle de mélanges gaussiens&lt;/a&gt; (Gaussian Mixture Model en anglais).&lt;/p&gt;
+
+&lt;h2 id=&quot;détails-dimplémentation&quot;&gt;Détails d’implémentation&lt;/h2&gt;
+
+&lt;p&gt;Ceci est une parenthèse sur l’utilisation de Python pour les calculs. Le lecteur qui n’est pas intéressé par le détail des calculs peut directement passer à la section “résultats”.&lt;/p&gt;
+
+&lt;p&gt;On importe le module &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;scikit-learn&lt;/code&gt; et on lance la fonction comme suit:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;sklearn.mixture&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;GaussianMixture&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;n_groups&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;g&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;GaussianMixture&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n_groups&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;g&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;notes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;où &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;n_groups&lt;/code&gt; est le nombre de groupes que l’on suppose dans la classe et &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;notes&lt;/code&gt; est la liste des notes sur une colonne. La commande &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;g.fit&lt;/code&gt; va lancer l’algorithme et stocker les résultats dans différentes variables associées à &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;g&lt;/code&gt;. Pour obtenir les résultats de chaque groupe, on peut utiliser la routine itérative suivante:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;group_id&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;range&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n_groups&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;weight&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;g&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;weights_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;group_id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;mean&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;g&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;means_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;group_id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;sigma&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sqrt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;g&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;covariances_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;group_id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;GROUP&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;group_id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Weight&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;round&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;weight&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Mean&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;round&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mean&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Sigma&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;round&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sigma&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Ici, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;weight&lt;/code&gt; est le poids de chaque gaussienne, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;mean&lt;/code&gt; sa moyenne et &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sigma&lt;/code&gt; son écart type.&lt;/p&gt;
+
+&lt;h2 id=&quot;résultats&quot;&gt;Résultats&lt;/h2&gt;
+
+&lt;p&gt;Voici ce que l’on obtient pour les notes des 2PRO si on suppose un seul groupe:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/personal-blog/images/lycee/distribution2PROfit.png&quot; alt=&quot;Distribution 2PRO&quot; title=&quot;Distribution 2PRO&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;La gaussienne centrée en 11.39 et d’écart type 2.45 semble bien coller avec les données.
+Passons maintenant aux 1PRO.
+Supposons d’abord qu’il y a un seul groupe dans la classe. On obtient le résultat suivant.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/personal-blog/images/lycee/distribution1PROfit1.png&quot; alt=&quot;Distribution 1PRO 1 groupe&quot; title=&quot;Distribution 1PRO 1 groupe&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Si l’on suppose qu’il existe 2 groupes.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/personal-blog/images/lycee/distribution1PROfit2.png&quot; alt=&quot;Distribution 1PRO 2 groupes&quot; title=&quot;Distribution 1PRO 2 groupe&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Il est difficile de départager ces résultats en regardant les graphiques. On va essayer de le faire plus objectivement, en utilisant le score “BIC” pour &lt;a href=&quot;https://en.wikipedia.org/wiki/Bayesian_information_criterion&quot;&gt;Bayesian Information Criterion&lt;/a&gt; ou critère d’information Bayésien. 
+Selon ce critère, le modèle pour lequel la valeur BIC est la plus petite est le meilleur (le plus adapté à la distribution).
+La fonction Python utilisée ici (GaussianMixture) calcule pour nous cette valeur. Pour l’hypothèse avec 1 groupe cette valeur est 163.96 et pour 2 groupes elle est de 166.87.&lt;/p&gt;
+
+&lt;p&gt;Le modèle avec un seul groupe d’élèves décrit ici (légèrement) mieux notre distribution de notes.
+Remarquons que l’écart type de la gaussienne pour les 2PRO vaut 2.45 et pour les 1PRO, 3.32. On a donc une distribution des notes bien plus étalée pour les 1PRO, ce qu’on voit sur le graphique. Les différences entre bons élèves et élèves en difficulté sont plus accentués dans la classe de 1PRO, même si on ne peut pas parler de 2 groupes bien distincts.&lt;/p&gt;
+
+&lt;p&gt;Finissons par la classe de TPRO. J’ai écarté la note zéro d’une élève qui est sortie de l’interrogation sans me rendre sa copie. Je ne pense pas que cette note soit représentative et elle fausse la distribution, d’autant plus que les notes n’ont pas été moyennées sur plusieurs interrogations. Voici ce que l’on obtient avec l’hypothèse d’un groupe.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/personal-blog/images/lycee/distributionTPROfit1.png&quot; alt=&quot;Distribution TPRO 1 groupe&quot; title=&quot;Distribution TPRO 1 groupe&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Il est plus difficile de voir la correspondance entre la distribution des notes et le modèle. Si l’on suppose qu’il existe 2 groupes:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/personal-blog/images/lycee/distributionTPROfit2.png&quot; alt=&quot;Distribution TPRO 2 groupes&quot; title=&quot;Distribution TPRO 2 groupe&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;La représentation semble plus adaptée.
+Si l’on compare le BIC des 2 résultats, on a 127.37 pour le modèle à un groupe et 124.07 pour le modèle à 2 groupes. Il semble donc que le modèle à 2 groupes soit plus fidèle pour décrire la distribution des notes de TPRO. Cela confirme la tendance de séparation entre les élèves de la classe avec le groupe des “bons” et le groupe des élèves en difficulté qui ont baissé les bras.&lt;/p&gt;
+
+&lt;p&gt;Pour montrer les limites de cette étude, voici maintenant la distribution des notes pour une classe de Seconde générale, sur une interrogation courte de 30 minutes.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/personal-blog/images/lycee/distribution2general.png&quot; alt=&quot;Distribution 2 générale&quot; title=&quot;Distribution 2 générale&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;On voit ici aussi une séparation en 2 groupes, comme pour les TPRO. L’évolution en 2 groupes distincts en filière Bac Pro n’est finalement peut être pas une évolution mais juste le fait que la classe, pour cette interrogation, est divisée en 2. La manière dont les questions sont posées dans l’interrogation peut avoir eu une influence, dans le sens où soit on sait faire l’exercice et on a tous les points, soit on a aucun point. Ceci creuse l’écart entre les élèves qui ont compris et les autres. Il faudrait confirmer sur les prochaines interrogations.&lt;/p&gt;
+
+&lt;h1 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h1&gt;
+
+&lt;p&gt;Il faut rester prudent dans les conclusions avec une aussi faible quantité de données. Les résultats pourraient être dû purement au hasard mais je dois noter qu’ils sont en accord avec l’impression que j’ai eu en classe. En effet, j’ai trouvé la classe très hétérogène avec certains élèves attentifs et intéressés, qui posent des questions et d’autres totalement démotivés. Comme je le disais au début, certains élèves sont convaincus qu’ils ne sont pas bons en mathématiques et que ca ne sert à rien pour eux d’essayer de travailler.&lt;/p&gt;
+
+&lt;p&gt;Au delà de ces résultats, il reste donc le problème de gestion de la classe. Comment combiner de la meilleure manière ces différences de niveaux afin que les élèves en difficulté se motivent et suivent et que les bons élèves ne s’ennuient pas non plus (sinon, ce sont eux qui vont commencer à bavarder et à gêner le cours). Je n’ai pour le moment pas de solution pour cela.&lt;/p&gt;
+
+&lt;p&gt;Même s’il est difficile de conclure, c’est tout de même un bon exercice de math et d’apprentissage automatique. Un algorithme important du domaine (le modèle de mélanges gaussiens) est utilisé et on voit son application pratique, avec les conditions dans lesquelles on peut l’utiliser, comment l’appliquer et ses limites. On voit aussi un problème central dans l’analyse de données en statistiques et en intelligence artificielle : on a besoin d’un grand, voire très grand, nombre de données pour avoir un apprentissage de qualité, et pouvoir extraire de l’information pertinente de celles-ci.&lt;/p&gt;</content><author><name></name></author><category term="lycee" /><category term="statistiques" /><category term="mathématiques" /><category term="apprentissage automatique" /><category term="machine learning" /><summary type="html">For my english readers, this post is in French. It is talking about student data from the French education system so I thought it would be better to write it in French. Je suis récemment retourné au Lycée. Non pas comme élève mais comme professeur. Pendant 2 mois j’ai enseigné les mathématiques (ou du moins j’ai essayé!) et en regardant les notes des différents contrôles, je dois dire que j’étais un peu perplexe. En effet, la distribution des notes autour de la moyenne est singulière. Elle semble avoir parfois une forme gaussienne, plus ou moins étalée et d’autres fois une forme plus complexe avec, semble-t-il, une séparation en 2 groupes (2 Gaussiennes). Comme j’adore l’analyse de données et que j’ai tous les outils à ma disposition avec Python, j’ai plongé dans l’analyse des notes. J’ai utilisé non seulement des statistiques que je leur ai enseignés (au programme du Bac), mais c’était aussi l’occasion d’utiliser mes algorithmes favoris d’apprentissage automatique et intelligence artificielle, ici le modèle de mélange gaussien. Les résultats et l’analyse en elle-même sont intéressants et c’est pour ca que je les partage. Voilà ce que j’ai découvert…</summary></entry><entry><title type="html">Exploring the oceans, around Antartica</title><link href="/personal-blog/antartic-data-exploration/" rel="alternate" type="text/html" title="Exploring the oceans, around Antartica" /><published>2017-11-26T00:00:00-06:00</published><updated>2017-11-26T00:00:00-06:00</updated><id>/personal-blog/antartic-data-exploration</id><content type="html" xml:base="/personal-blog/antartic-data-exploration/">&lt;p&gt;The Antartic Curcumnavigation Expedition is a scientific expedition that has collected a large amount of data from Antartica. Scientists working on the project would be happy to get some help from experts in data analysis and data scientists. They plan to make the data open and during the first Data Jam at EPFL in Lausanne, some of their data were presented. The goal and the dataset convinced me to join them in the analysis of the sonar data. This post is a short presentation of what we managed to do during the 2 Data Jam Days. It reveals some interesting information about Antartica and on the methods used to analyze sonar signals.&lt;/p&gt;
+
+&lt;h1 id=&quot;context&quot;&gt;Context&lt;/h1&gt;
+
+&lt;p&gt;Recently, I had the opportunity to participate in the first “&lt;a href=&quot;http://datajamdays.org&quot;&gt;Data Jam Days&lt;/a&gt;” that took place at EPFL in Lausanne, Switzerland. The concept is to invite people of various backgrounds in one place during two days and let them work together on some nice datasets. It was a cool experience and I look forward to the next one.&lt;/p&gt;
+
+&lt;p&gt;For the two days, I teamed up with &lt;a href=&quot;http://camleguen.wixsite.com/monsite&quot;&gt;Camille Le Guen&lt;/a&gt;, the ACE expert who presented us one of the datasets. She is doing her PhD and has spent several weeks on a ship around Antartica. She has many fun stories about her experience on the ship, camping on some of the Islands or catching penguins, putting GPS trackers to find out where they find their food.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/personal-blog/images/ACE/481px-Antarctica.svg.png&quot; alt=&quot;Antartica&quot; title=&quot;Antartica&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Antartica is the large continent around the South Pole. It is a part of the earth which is still largely unknown. Yet it has a rich ecosystem, in particular in the oceans around it. Birds, mammals, fishes, Krill, plankton are everywhere. I found it really interesting and motivating to work on data from this continent.&lt;/p&gt;
+
+&lt;p&gt;The code written during the workshop is available on &lt;a href=&quot;https://github.com/bricaud/AntarticSonarData&quot;&gt;Github&lt;/a&gt;. The data should be available soon.&lt;/p&gt;
+
+&lt;h1 id=&quot;the-dataset&quot;&gt;The dataset&lt;/h1&gt;
+
+&lt;p&gt;Several datasets were presented and I chose to work on the one from the &lt;a href=&quot;http://spi-ace-expedition.ch/&quot;&gt;Antartic Circumnavigation Expedition&lt;/a&gt;. This is one of the 22 scientific experiments done during the expedition. Sonar signals were collected continuously while the ship was traveling around Antartica. The purpose was to extract echoes in the data that are due to &lt;a href=&quot;https://en.wikipedia.org/wiki/Antarctic_krill&quot;&gt;krill swarms&lt;/a&gt; (mainly but can also be due to other living organisms). The swarms reflect the acoustic waves and this is detected by the sonar. Unfortunately, these reflections are weak and it is difficult to distinguish them from the noise and the other sonar artifacts.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/personal-blog/images/ACE/320px-Antarctic_krill_(Euphausia_superba).jpg&quot; alt=&quot;Antartic krill&quot; title=&quot;Image taken from Wikipedia. CC license.&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Let us look at a plot of the sonar data. On the image below, we can see the ocean depth on the y-axis. The top is just below the surface, where the sonar emitter is located. The bottom is here at around 30m below the surface. We decided to focus on this region as it is where the krill swarms are supposed to be, and where the signal is of better quality. The x-axis represents the time. The sonar emits a ping every 8 seconds, so each value is a 8 seconds time frame. As the ship is moving you can also see the x-axis as a distance. For each point, the color represents the amplitude of the sonar echo (in a log scale). It ranges from blue and green for small values to yellow for strong echoes.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/personal-blog/images/ACE/sonogramexample.png&quot; alt=&quot;Example of sonogram data&quot; title=&quot;Sonogram data&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;At the surface, the signal is very strong (thin yellow line) due to reflections and noise from the ship. After going down a few meters, the signal intensity reduces and the image turns greenish.
+If you look carefully, you may see shades of green and blue forming patterns, that is where the krill swarms are. It is not so easy to spot!&lt;/p&gt;
+
+&lt;p&gt;Each ping of the sonar is tagged with its GPS coordinates and the time. Hence we can find the precise location of a krill swarm when we have detected one.&lt;/p&gt;
+
+&lt;h1 id=&quot;our-goal&quot;&gt;Our goal&lt;/h1&gt;
+
+&lt;p&gt;Two days is very short and it is difficult to ask for ambitious results. After a few minutes of brainstorming and a coffee, we settled on a roadmap. We wanted to have at the end an image of the earth and some ticks where krill swarms were detected. If we had time we could add information on each swarm, like its width and depth and play with color and size of the ticks.&lt;/p&gt;
+
+&lt;p&gt;We fixed several milestones:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Detect the presence of krill in the data&lt;/li&gt;
+  &lt;li&gt;Extract its information&lt;/li&gt;
+  &lt;li&gt;Create a map to visualize the results&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;signal-processing-and-denoising&quot;&gt;Signal processing and denoising&lt;/h1&gt;
+
+&lt;p&gt;The main task for us was to extract the krill swarm signature from the noise. And indeed, the data was terribly noisy. Usually, in data science, you have cleaner datasets. It was a great challenge but I was confident. I have spent several years in the past, working on acoustic and radar signals as well as denoising techniques.&lt;/p&gt;
+
+&lt;p&gt;Fortunately for us, there is a great Python module called &lt;a href=&quot;http://scikit-image.org/&quot;&gt;scikit-image&lt;/a&gt; or skimage that helped us to quickly apply different denoising techniques and see what would give the best outcome.&lt;/p&gt;
+
+&lt;p&gt;In the dataset, there are particular noise patterns forming straight vertical lines. We used a hand-made variant of the median filter from &lt;a href=&quot;https://rolandproud.github.io/&quot;&gt;Roland Proud&lt;/a&gt;, a former postdoc working on sonar data.
+In order to remove isolated high values appearing in the data, often called &lt;a href=&quot;https://en.wikipedia.org/wiki/Salt-and-pepper_noise&quot;&gt;salt-and-pepper noise&lt;/a&gt;, we used a median filter. We took &lt;a href=&quot;https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.medfilt.html&quot;&gt;medfilt&lt;/a&gt; from Scipy.&lt;/p&gt;
+
+&lt;p&gt;After some trial and errors, we found out that the relevant signal values range from -70 to -65 while the full range is from around -100 (even less) to around 10 for the most powerful echoes and artifacts. Reducing to the former range gave us a better view of the potential krill swarms.&lt;/p&gt;
+
+&lt;p&gt;Eventually, we suppressed the remaining noise by applying the skimage &lt;a href=&quot;http://scikit-image.org/docs/dev/api/skimage.filters.html#skimage.filters.gaussian&quot;&gt;Gaussian filter&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;After the denoising, we summed up the echo values along the depth axis and got a binary “krill presence function” that took a positive value if there was some krill detected during a ping.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/personal-blog/images/ACE/krilldetector.png&quot; alt=&quot;Krill detector&quot; title=&quot;The krill detector&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;On the above figure, the top plot is the raw signal where the highest values have been decreased (in particular near the surface). Do not pay attention to the scales, this is a number of points. You may convert to meters if you multiply by 0.2 the y-axis values and in seconds if you multiply by 8 the x-axis values. The middle image shows the result of the Gaussian filter that smooths out most of the noise. The krill signals become smooth bumps. The bottom function is the detection function which has value zero in the absence of krill and take the value 100 when krill is detected.&lt;/p&gt;
+
+&lt;p&gt;The denoising and detection part took us the entire first day and half of the second day. We were glad to get such a nice “krill detector” after all the time and effort spent on it. Of course, the signal processing is not optimal. I am sure we got several false positives and false negatives. The denoising is crude but we can refine it in the future.&lt;/p&gt;
+
+&lt;h1 id=&quot;data-visualization&quot;&gt;Data visualization&lt;/h1&gt;
+
+&lt;p&gt;During the last hours of the workshop, &lt;a href=&quot;https://people.epfl.ch/quentin.cavillier&quot;&gt;Quentin&lt;/a&gt; came to us and offered to help us. He is an expert in web applications and that was perfect for us as we were in need of a good visualization. We wanted a map of the location of the krill swarms. He suggested to use the Google map API and asked us for a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;json&lt;/code&gt; file with the latitude and longitude of our swarms. He prepared a quick web page where we could put the json file and get the visualization. Here is the result.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/personal-blog/images/ACE/krill.png&quot; alt=&quot;Krill swarms around Antartica&quot; title=&quot;Krill swarms&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;We studied 2 consecutive days of sonar data (14th and 15th of February 2017). The marks on the map correspond to krill swarms detected along the path of the ship during these 2 days. You might be surprised by the number of swarms but it is not unusual. In this region the ice melt and the presence of warm and cold water create good conditions for the krill to multiply.
+A zoom on the area (below) shows the irregular distribution of krill.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/personal-blog/images/ACE/krillzoom.png&quot; alt=&quot;Zoom on the krill swarms around Antartica&quot; title=&quot;Krill swarms, zoom&quot; /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h1&gt;
+
+&lt;p&gt;I was really happy with the outcome of these data jam days. I enjoyed coding in Python and using image and signal processing methods to extract meaningful information. The results exceeded our expectations. Of course, there is still some work to be done before reaching conclusions of scientific value: the false positive and false negative rate must be assessed.&lt;/p&gt;
+
+&lt;p&gt;We made a great team with complementary skills: the combination of an expert in the data on one hand and an expert in signal processing on the other hand. We had a lot of discussions and exchanges about the data, the kind of pattern to look for, where to look for it, what is meaningful what is not. I felt useful and happy to make a small contribution to a better understanding of Antartica.&lt;/p&gt;</content><author><name></name></author><category term="signal processing" /><category term="python" /><category term="sonar" /><category term="biology" /><summary type="html">The Antartic Curcumnavigation Expedition is a scientific expedition that has collected a large amount of data from Antartica. Scientists working on the project would be happy to get some help from experts in data analysis and data scientists. They plan to make the data open and during the first Data Jam at EPFL in Lausanne, some of their data were presented. The goal and the dataset convinced me to join them in the analysis of the sonar data. This post is a short presentation of what we managed to do during the 2 Data Jam Days. It reveals some interesting information about Antartica and on the methods used to analyze sonar signals.</summary></entry><entry><title type="html">Testing the Cosmos DB graph database</title><link href="/personal-blog/azure-and-cosmos-db-graph/" rel="alternate" type="text/html" title="Testing the Cosmos DB graph database" /><published>2017-10-04T00:00:00-05:00</published><updated>2017-10-04T00:00:00-05:00</updated><id>/personal-blog/azure-and-cosmos-db-graph</id><content type="html" xml:base="/personal-blog/azure-and-cosmos-db-graph/">&lt;p&gt;Graph databases raise more and more interest as alternatives to standard SQL databases. Indeed, the graph structure may be better suited when queries are focusing on relationships between entities stored in the database. Cloud companies have spotted this trend and provide new solutions to set up graph databases in the cloud. Amazon and Google have made the choice of providing ways to connect JanusGraph to DynamoDB and BigTable respectively. Microsoft has chosen to provide its own graph database while relying on Gremlin for handling queries. Azure is using Cosmos DB as a backend for it. I have tested the Cosmos graph DB and I want here to share my first impressions.&lt;/p&gt;
+
+&lt;h1 id=&quot;introduction&quot;&gt;Introduction&lt;/h1&gt;
+
+&lt;p&gt;Graph databases and their surrounding plugins/modules are rapidly evolving and I am convinced that the present tutorial will be quickly out of date. Because of its lack of maturity, this field of engineering is not as neat and documented as what we are used to (for instance with SQL). If I point out the weaknesses here, I also acknowledge the efforts and work of the persons designing the solutions or providing open source code that simplify the life of users. I want to thank them for helping widespread the graph approach and the elegance of graph modeling. It is time now to encourage curious minds to try out and discover the word of graphs.&lt;/p&gt;
+
+&lt;h1 id=&quot;setting-up-the-graph-database-server&quot;&gt;Setting up the Graph database server&lt;/h1&gt;
+
+&lt;p&gt;Microsoft provides a graph database service easy to set up and start. Indeed, in a few clicks, the server is up and running. Without exaggerating much, it is one click to create a Cosmos database and one click to create the graph DB. The Gremlin server is automatically launched with a domain name &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;YOURGRAPHNAME.graphs.azure.com&lt;/code&gt;, ready to listen to any ssl connection on port &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;443&lt;/code&gt;. It avoids the burden of configuring the database. You just need to choose the name of your graph (and of the collection). The &lt;a href=&quot;https://docs.microsoft.com/en-us/azure/cosmos-db/create-graph-gremlin-console&quot;&gt;tutorial&lt;/a&gt; for creating the graph is straightforward (first part of the webpage).&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/personal-blog/images/cosmosGraph/cosmosdbdashboard.png&quot; alt=&quot;Screenshot of the Cosmos DB dashboard&quot; title=&quot;The Cosmos DB dashboard&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The first impression is pretty good. The user and password for the ssl connection are automatically generated, and ready to use. In addition, no need to configure the Gremlin server or its interaction with the Cosmos database. This is quite comfortable, even more when you compare to the set up of a graph database on AWS (see my previous &lt;a href=&quot;/personal-blog/personal-blog/janusgraph-running-on-aws-with-dynamodb/&quot;&gt;blog post&lt;/a&gt;).&lt;/p&gt;
+
+&lt;h1 id=&quot;connecting-to-the-gremlin-server&quot;&gt;Connecting to the Gremlin server&lt;/h1&gt;
+
+&lt;p&gt;Several tutorials are available to explain how to interact with the server. They cover &lt;a href=&quot;https://docs.microsoft.com/en-us/azure/cosmos-db/create-graph-dotnet&quot;&gt;.Net&lt;/a&gt;, &lt;a href=&quot;https://docs.microsoft.com/en-us/azure/cosmos-db/create-graph-java&quot;&gt;Java&lt;/a&gt;, &lt;a href=&quot;https://docs.microsoft.com/en-us/azure/cosmos-db/create-graph-nodejs&quot;&gt;Javascript&lt;/a&gt; and the &lt;a href=&quot;https://docs.microsoft.com/en-us/azure/cosmos-db/create-graph-gremlin-console&quot;&gt;Gremlin Console&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;As you may know, I am a big fan of Python and I felt a bit frustrated when I noticed I can not use it to query the server [&lt;sup id=&quot;fnref:1&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;].&lt;/p&gt;
+
+&lt;p&gt;So I decided to have a try with a different language and I picked the popular Javascript (Node.js). At first I found it confusing as the address of the graph given by the Azure portal contains &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;https&lt;/code&gt; while the gremlin module for Javascript explicitly states that it only handles websocket connections. I found out that, although not documented, you can connect (and you do in all the tutorials!) to the server using secure websocket &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;wss&lt;/code&gt;. I was also a bit perplex about the &lt;a href=&quot;https://github.com/CosmosDB/gremlin-javascript&quot;&gt;javascript module&lt;/a&gt; used which is just a fork of a project made by a contributor of Gremlin Tinkerpop. This module is not in the official Tinkerpop repository. Of course, being on the repository of an individual does not preclude an efficient module of good quality. It just raises questions about the continuity of the work. Microsoft engineers have started to contribute to this module, adding security handling, so it is going in a good direction.&lt;/p&gt;
+
+&lt;p&gt;You may connect to the Gremlin server using the function &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Gremlin.createClient&lt;/code&gt; (form the gremlin module), specifying the port &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;443&lt;/code&gt;, the address &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;config.endpoint&lt;/code&gt; and the ssl credentials &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;user&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;password&lt;/code&gt; (stored in the config file, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;config.js&lt;/code&gt;).&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;client&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Gremlin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;createClient&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+    &lt;span class=&quot;mi&quot;&gt;443&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; 
+    &lt;span class=&quot;nx&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;endpoint&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; 
+    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; 
+        &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;session&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; 
+        &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;ssl&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; 
+        &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;`/dbs/&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;database&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;/colls/&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;collection&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;password&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;primaryKey&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Then a query can be sent using the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;client.execute&lt;/code&gt; function. That’s it! Pretty easy. You have to find by yourself the structure of the returned data but that should not be too difficult, it uses the JSON format. For each vertex, the data is organized as a dictionary with keys &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;id&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;label&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;type&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;properties&lt;/code&gt;. The value associated to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;properties&lt;/code&gt; is again a dictionary with all property names as keys, and values being lists.&lt;/p&gt;
+
+&lt;h1 id=&quot;writing-to-the-database&quot;&gt;Writing to the database&lt;/h1&gt;
+
+&lt;p&gt;I have used and modified the &lt;a href=&quot;https://github.com/Azure-Samples/azure-cosmos-db-graph-nodejs-getting-started&quot;&gt;code from the javascript tutorial&lt;/a&gt; to insert some data to the database. I wanted to know the speed of loading data into the graph. No batch / bulk loading here. This can only be done by sending Gremlin requests to the server, and you have to insert one node at a time (one per gremlin query). Typically, it is of the following form if you want to add a person with name &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Benjamin&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;gremlin_query&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;g.addV('person').property('name', name)&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;bindings&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;Benjamin&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;client&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;execute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;gremlin_query&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;bindings&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;function_to_process_the_results&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;function_to_process_the_results&lt;/code&gt; may be a function that calls recursively &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;client.execute&lt;/code&gt;, in order to process sequencially the requests. In that case the bindings are changing with the node to add. For the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;i&lt;/code&gt;th node and assuming the node data is stored in an object called &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;data[i]&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;node_name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;bindings&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;node_name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;em&gt;(The following part was updated on 12th October 2017, thanks to the comments and suggestions of &lt;a href=&quot;https://github.com/jbmusso&quot;&gt;jbmusso&lt;/a&gt; and of the Cosmos graph DB team)&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;According to my tests, If I simply send the requests for writing nodes one by one, the writing speed is roughly around 6 to 12 nodes per second (it is fluctuating, but I don’t know exactly why. It might be because of my internet connection). However, if I run two such sequential requests in parallel, it takes roughly the same time, but it writes twice the number of nodes. It shows that the Cosmos DB database is not to be blamed here. It answers nicely to the requests in parallel. It just says that loading a large number of nodes sequentially to a graph database is not the most efficient way. I did not perform the test on other graph databases but this should hold for any databases (not only Cosmos DB).&lt;/p&gt;
+
+&lt;p&gt;A function that efficiently loads large datasets into a graph database is something which would be quite useful and is missing at the moment. According to the Cosmos graph DB team, who contacted me, they are working on a bulk import tool. I look forward to it! Meanwhile, I may make a pull request with such a function to &lt;a href=&quot;https://github.com/jbmusso/gremlin-javascript&quot;&gt;gremlin-javascript&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h1 id=&quot;optimizing-and-tuning-of-the-database&quot;&gt;Optimizing and tuning of the database&lt;/h1&gt;
+
+&lt;p&gt;The &lt;a href=&quot;https://docs.microsoft.com/en-us/azure/cosmos-db/gremlin-support&quot;&gt;list of Gremlin steps&lt;/a&gt; supported by Cosmos DB does not yet contain all the possible steps. However, this reduced list will be sufficient for most use-cases and for users willing to learn Gremlin and graph databases. Strangely, the steps &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;loop&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;choose&lt;/code&gt; are stated on this &lt;a href=&quot;https://docs.microsoft.com/en-us/azure/cosmos-db/tutorial-query-graph&quot;&gt;tutorial-query-graph page&lt;/a&gt; but they are not on the list of supported steps.&lt;/p&gt;
+
+&lt;p&gt;Indexing is really important in graph databases as you need to start from somewhere before you travel through the connections and relationships. The starting point(s) is (are) chosen according to a keyword or a value and if there is no index, you have to scan the full graph to find them. According to Azure webpages, all entries in the DB are automatically indexed (vertex and edge properties) avoiding the need to manually creating them. However, it does not allow for partial or fuzzy matching. For example, with JanusGraph, users can combine Elasticsearch with the graph, which makes the keywords &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;textContains&lt;/code&gt; or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;textRegex&lt;/code&gt; &lt;a href=&quot;http://docs.janusgraph.org/latest/search-predicates.html&quot;&gt;available as gremlin predicates&lt;/a&gt;, to search in strings.&lt;/p&gt;
+
+&lt;p&gt;As we have seen in the previous section, when you start setting up a database, you may need to load a large amount of data at the beginning. If you need to load a large amount of data at once, you can rely on specific functions that speed up the process. &lt;a href=&quot;http://docs.janusgraph.org/latest/bulk-loading.html&quot;&gt;Here is an example&lt;/a&gt; concerning JanusGraph. You may also rely on the Gremlin console with &lt;a href=&quot;http://tinkerpop.apache.org/docs/3.1.0-incubating/#bulkloadervertexprogram&quot;&gt;bulkloadervertexprogram&lt;/a&gt;. It is available for several backends but I do not know if this works with Cosmos. The Azure tutorials do not say anything about bulk loading. Still, relying on the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bindings&lt;/code&gt; mechanism in traversals (see this &lt;a href=&quot;https://groups.google.com/forum/?utm_medium=email&amp;amp;utm_source=footer#!msg/gremlin-users/lE67mACc3QM/xrdvkjniAwAJ&quot;&gt;thread&lt;/a&gt;) is always available and should be fine for most users.&lt;/p&gt;
+
+&lt;h1 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h1&gt;
+
+&lt;p&gt;To conclude, the graph setting of Cosmos DB is perfectly suited for users willing to learn and get a grip on graph models and a graph database. Azure avoid us the painful configuration of the server and the database, and we can concentrate on learning the graph logic and the Gremlin language. However, this simplicity does not allow for flexibility and the advanced graph users might be a bit disappointed. Meanwhile, the service will evolve and hopefully provide more advanced settings, more tutorials and documentation, and more open-source code at our disposal in the near future.&lt;/p&gt;
+
+&lt;p&gt;It is important to understand that graph databases are cutting edge tools, they are rapidly evolving, with new versions coming at a fast pace and scarce documentation and tutorials. We are just at the beginning of this new concept, this new way of thinking and structuring data. Observing its evolution is fascinating.&lt;/p&gt;
+
+&lt;div class=&quot;footnotes&quot; role=&quot;doc-endnotes&quot;&gt;
+  &lt;ol&gt;
+    &lt;li id=&quot;fn:1&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;There is an issue with the serialization, the way the server receive and send data. The Cosmos DB graph is configured to accept only data in GraphSON v1 format (see &lt;a href=&quot;https://docs.microsoft.com/en-us/azure/cosmos-db/create-graph-gremlin-console&quot;&gt;here&lt;/a&gt;). Unfortunately, &lt;a href=&quot;http://tinkerpop.apache.org/docs/current/reference/#gremlin-python&quot;&gt;pythongremlin&lt;/a&gt; only handle GraphSON v2. (At the time of writing the latest version of gremlinpython is 3.3.0). &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/div&gt;</content><author><name></name></author><category term="graph" /><category term="coding" /><category term="cloud" /><summary type="html">Graph databases raise more and more interest as alternatives to standard SQL databases. Indeed, the graph structure may be better suited when queries are focusing on relationships between entities stored in the database. Cloud companies have spotted this trend and provide new solutions to set up graph databases in the cloud. Amazon and Google have made the choice of providing ways to connect JanusGraph to DynamoDB and BigTable respectively. Microsoft has chosen to provide its own graph database while relying on Gremlin for handling queries. Azure is using Cosmos DB as a backend for it. I have tested the Cosmos graph DB and I want here to share my first impressions.</summary></entry><entry><title type="html">Setting up JanusGraph on AWS using EC2 and DynamoDB</title><link href="/personal-blog/janusgraph-running-on-aws-with-dynamodb/" rel="alternate" type="text/html" title="Setting up JanusGraph on AWS using EC2 and DynamoDB" /><published>2017-09-13T00:00:00-05:00</published><updated>2017-09-13T00:00:00-05:00</updated><id>/personal-blog/janusgraph-running-on-aws-with-dynamodb</id><content type="html" xml:base="/personal-blog/janusgraph-running-on-aws-with-dynamodb/">&lt;p&gt;Graph Databases are not yet widely used and it is still not completely straightforward to run one in the cloud. I describe here the different steps I made to install and run the JanusGraph database, using the NoSQL database DynamoDB as a storage backend. The cloud is the one from Amazon (AWS).&lt;/p&gt;
+
+&lt;h2 id=&quot;architecture&quot;&gt;Architecture&lt;/h2&gt;
+
+&lt;p&gt;To run the graph database, the idea is use the possibilities offered by a cloud service such as AWS. The &lt;a href=&quot;http://janusgraph.org/&quot;&gt;JanusGraph&lt;/a&gt; is a scalable graph database for which you can choose a backend, in fact a NoSQL database, such as Cassandra, Hbase or BerkeleyDB, for storing the data. The license is Apache 2.0 and the project is owned by the Linux Foundation (It is a fork from the Titan graph database). The repository is &lt;a href=&quot;https://github.com/JanusGraph/janusgraph&quot;&gt;here&lt;/a&gt;. Although not in the official list, it is also possible to choose Amazon’s &lt;a href=&quot;https://en.wikipedia.org/wiki/Amazon_DynamoDB&quot;&gt;DynamoDB&lt;/a&gt;. This latter database is the one provided as a service in AWS. You can start it in a few clicks and you are billed on the amount of data it contains. You do not need any computer resources, everything is handled by Amazon.&lt;/p&gt;
+
+&lt;p&gt;The idea is to run the JanusGraph on an &lt;a href=&quot;https://en.wikipedia.org/wiki/Amazon_Elastic_Compute_Cloud&quot;&gt;EC2&lt;/a&gt; machine and make the interface with the DynamoDB for storing the data. Optionally, you may also set up an access to a disk storage (with &lt;a href=&quot;https://en.wikipedia.org/wiki/Amazon_S3&quot;&gt;S3&lt;/a&gt;) where you can save the configuration files or any kind of data needed for your app.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/personal-blog/images/janusGraphInstall/janusGraphSchema.png&quot; alt=&quot;Architecture view&quot; title=&quot;Architecture in the cloud&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;In order to help set up the graph database, the AWS team provides some &lt;a href=&quot;https://github.com/awslabs/dynamodb-janusgraph-storage-backend&quot;&gt;code and directions&lt;/a&gt;. All is in there but the guidelines were not exactly leading to what I wanted. I did not want to run the script that launches an EC2 instance fully configured. I wanted to install JanusGraph on my already running EC2 instance and be able to customize it.&lt;/p&gt;
+
+&lt;h2 id=&quot;the-ec2-instance&quot;&gt;The EC2 instance&lt;/h2&gt;
+
+&lt;p&gt;First, you need an EC2 instance where to install the graph server. Go to the &lt;a href=&quot;http://console.aws.amazon.com/&quot;&gt;AWS console&lt;/a&gt; and launch one (with Linux) if it is not already done. Get your keys (the .pem file) and connect to the instance using ssh. On your machine (Linux or Mac) open a terminal and run&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ssh -i path_to_your_pem_file ec2-user@ip_address_of_your_machine
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Now you are logged in your EC2 instance, install the pre-requisites by typing in the terminal (first steps in the &lt;a href=&quot;https://github.com/awslabs/dynamodb-janusgraph-storage-backend&quot;&gt;awslabs’ repo&lt;/a&gt;):&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;curl https://raw.githubusercontent.com/awslabs/dynamodb-janusgraph-storage-backend/master/src/test/resources/install-reqs.sh
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The command above prints out a list of instructions which you can inspect and copy+paste the executable shell script to execute to start the pre-requisites.&lt;/p&gt;
+
+&lt;p&gt;Then, clone the repository&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git clone https://github.com/awslabs/dynamodb-janusgraph-storage-backend.git &amp;amp;&amp;amp; cd dynamodb-janusgraph-storage-backend
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Inside the cloned repository, the Awslab’s team provide a script for installing JanusGraph. Install the JanusGraph and gremlin server by running, (Check and modify the JanusGraph version to install if needed)&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;src/test/resources/install-gremlin-server.sh
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;When this is done, go to the folder where JanusGraph has been installed:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;cd server/dynamodb-janusgraph-storage-backend-1.1.1
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;You need to configure your graph database server.
+In the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;conf&lt;/code&gt; folder, you will find the configuration files. You may have to modify the file &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;dynamodb.properties&lt;/code&gt;, in particular the line&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;storage.dynamodb.client.signing-region=us-west-2
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Put your region instead. You may do it with the nano editor:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;nano conf/dynamodb.properties
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Details about the possible configuration choices are given &lt;a href=&quot;https://github.com/awslabs/dynamodb-janusgraph-storage-backend#dynamodb-keycolumnvalue-store-configuration-parameters&quot;&gt;here&lt;/a&gt;. If you use single-items you must add&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;storage.dynamodb.stores.edgestore.data-model=SINGLE
+storage.dynamodb.stores.graphindex.data-model=SINGLE
+storage.dynamodb.stores.janusgraph_ids.data-model=SINGLE
+storage.dynamodb.stores.system_properties.data-model=SINGLE
+storage.dynamodb.stores.systemlog.data-model=SINGLE
+storage.dynamodb.stores.txlog.data-model=SINGLE
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;dynamodb&quot;&gt;DynamoDB&lt;/h2&gt;
+&lt;p&gt;You need DynamoDB and database tables configured to receive the data from JanusGraph. Go &lt;a href=&quot;https://console.aws.amazon.com/dynamodb/home&quot;&gt;here&lt;/a&gt; to check whether you can have access to DynamoDB.
+To create the table, you need to run the &lt;a href=&quot;https://github.com/awslabs/dynamodb-janusgraph-storage-backend#cloudformation-template-table&quot;&gt;script provided here&lt;/a&gt; in &lt;a href=&quot;https://aws.amazon.com/cloudformation&quot;&gt;CloudFormation&lt;/a&gt;. You may access CoudFormation from the &lt;a href=&quot;http://console.aws.amazon.com/&quot;&gt;AWS console&lt;/a&gt;, then create a new stack. Download the &lt;a href=&quot;https://github.com/awslabs/dynamodb-janusgraph-storage-backend#cloudformation-template-table&quot;&gt;script&lt;/a&gt; and choose to create the stack from this file.&lt;/p&gt;
+
+&lt;h2 id=&quot;s3&quot;&gt;S3&lt;/h2&gt;
+&lt;p&gt;If you do not have any S3 service running go to the &lt;a href=&quot;http://console.aws.amazon.com/&quot;&gt;AWS console&lt;/a&gt; to start one. You can create a bucket where the configuration file will be stored. With the correct configuration (see next section) you can access the files from the EC2 instance and copy them using the command:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;aws s3 cp source_file destination_file
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;allow-interactions-between-ec2-and-dynamodb&quot;&gt;Allow interactions between EC2 and dynamoDB&lt;/h2&gt;
+&lt;p&gt;To allow EC2 to access DynamoDB and S3, create a new &lt;a href=&quot;https://console.aws.amazon.com/iam/&quot;&gt;IAM role&lt;/a&gt; and &lt;a href=&quot;http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html#attach-iam-role&quot;&gt;attach it&lt;/a&gt; to the EC2 instance. In this IAM role, choose full access to dynamoDB and read (or full) access to S3.&lt;/p&gt;
+
+&lt;h2 id=&quot;running-the-server&quot;&gt;Running the server&lt;/h2&gt;
+&lt;p&gt;Coming back to the EC2 instance, launch the server (JanusGraph uses the Gremlin server). Go to the correct folder&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;cd /home/ec2-user/dynamodb-janusgraph-storage-backend/server/dynamodb-janusgraph-storage-backend-1.1.1
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Run the server:&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;bin/gremlin-server.sh conf/gremlin-server/gremlin-server.yaml
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;accessing-the-graph-database&quot;&gt;Accessing the graph database&lt;/h2&gt;
+&lt;p&gt;In the same directory, you may run the Gremlin console to test and query the database:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;bin/gremlin.sh
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;and inside the console, connect to the server:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;:remote connect tinkerpop.server conf/remote.yaml session
+:remote console
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;You should be able to query the graph database. For example, you can load a part of the &lt;a href=&quot;https://github.com/awslabs/dynamodb-janusgraph-storage-backend#load-a-subset-of-the-marvel-universe-social-graph&quot;&gt;Marvel database&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;adding-python-to-the-server&quot;&gt;Adding Python to the server&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;Section added on the 19th of September 2017&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;If you need to query the graph database server using Python, you have to make an additional configuration step for the server ( besides the &lt;a href=&quot;https://pypi.python.org/pypi/gremlinpython&quot;&gt;gremlin python&lt;/a&gt; module to include in the Python code).&lt;/p&gt;
+
+&lt;p&gt;First note that the following is for JanusGraph version 0.1.1 and Gremlin Server 3.2.3, which is the version available for download at the time of writing.
+First you must load the Python libraries using:&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;bin/gremlin-server.sh -i org.apache.tinkerpop gremlin-python 3.2.3
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Make sure you are using the correct version of gremlin-python. I made the mistake of installing 3.2.5 instead and it did not work. I found the correct answer &lt;a href=&quot;https://groups.google.com/forum/#!topic/janusgraph-dev/_EbTdatQ39k&quot;&gt;here&lt;/a&gt;.
+Then the gremlin server configuration file must be changed (usually called &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;gremlin-server.yaml&lt;/code&gt;). &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;gremlin-python&lt;/code&gt; must be added in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;scriptEngines&lt;/code&gt; section:&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;scriptEngines: {
+  gremlin-groovy: {
+    imports: [java.lang.Math],
+    staticImports: [java.lang.Math.PI],
+    scripts: [scripts/generate-modern.groovy]},
+  gremlin-jython: {},
+  gremlin-python: {}
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name></name></author><category term="graph" /><category term="coding" /><summary type="html">Graph Databases are not yet widely used and it is still not completely straightforward to run one in the cloud. I describe here the different steps I made to install and run the JanusGraph database, using the NoSQL database DynamoDB as a storage backend. The cloud is the one from Amazon (AWS).</summary></entry><entry><title type="html">A simple explanation of entropy in decision trees</title><link href="/personal-blog/entropy-in-decision-trees/" rel="alternate" type="text/html" title="A simple explanation of entropy in decision trees" /><published>2017-08-27T00:00:00-05:00</published><updated>2017-08-27T00:00:00-05:00</updated><id>/personal-blog/entropy-in-decision-trees</id><content type="html" xml:base="/personal-blog/entropy-in-decision-trees/">&lt;p&gt;I recently wanted to refresh my memory about Machine Learning methods. I have spent some time reading tutorials, blogs and Wikipedia. No doubts, the Internet is really useful, this is great. I got back on tracks quickly with the general idea of the mainstream algorithms. However, from time to time, I find some particular points and explanations obscure. This concerns often details about the algorithms which are overlooked. Sometimes, the emphasis is on the main part of the algorithm and some details are left missing. But I found these missing parts quite important to fully understand what’s going on in the algorithm.&lt;/p&gt;
+
+&lt;p&gt;In this series of blog posts, I want to clarify or at least provide a different explanation of some of the concepts in machine learning, in the hope of helping people increase their understanding of these methods.
+Since I have spent quite some time studying the concept of entropy in academia, I will start my Machine Learning tutorial with it.
+Evaluating the entropy is a key step in decision trees, however, it is often overlooked (as well as the other measures of the messiness of the data, like the Gini coefficient). This is really an important concept to get, in order to fully understand decision trees.&lt;/p&gt;
+
+&lt;h2 id=&quot;metaphoric-definition-of-entropy&quot;&gt;Metaphoric definition of entropy&lt;/h2&gt;
+
+&lt;p&gt;Entropy is a concept used in Physics, mathematics, computer science (information theory) and other fields of science. You may have a look at Wikipedia to see the many uses of &lt;a href=&quot;https://en.wikipedia.org/wiki/Entropy_(disambiguation)&quot;&gt;entropy&lt;/a&gt;. Yet, its definition is not obvious for everyone.&lt;/p&gt;
+
+&lt;p&gt;Plato, &lt;a href=&quot;https://en.wikipedia.org/wiki/Allegory_of_the_Cave&quot;&gt;with his cave&lt;/a&gt;, knew that metaphors are good ways for explaining deep ideas. Let try to get some inspiration from him. I like the definition of entropy given sometimes by physicists:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Entropy is a measure of disorder.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;So let us take this point of view and think that our dataset is like a messy room:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Entropy is an indicator of how messy your data is.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Imagine you are about to tidy your room or your kids’ room. Usually, you use a subjective measure to estimate how messy is it. (not everyone has the same measure :), but this is not the topic here). You know that objects must be on the shelves and probably grouped together, by type: books with books, toys with other toys …&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/personal-blog/images/entropy/messy_room.jpg&quot; alt=&quot;Messy room&quot; title=&quot;My Kids messy room&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Fortunately, the visual inspection can be replaced by a more mathematical approach for the data. A mathematical function exists for estimating the mess among mathematical objects and we can apply it to our data.
+The requirement of this function is that it provides a minimum value if there is the same kind of objects in the set and a maximal value if there is a uniform mixing of objects with different labels (or categories) in the set.&lt;/p&gt;
+
+&lt;h2 id=&quot;why-entropy-in-decision-trees&quot;&gt;Why entropy in decision trees?&lt;/h2&gt;
+
+&lt;p&gt;In decision trees, the goal is to tidy the data. You try to separate your data and group the samples together in the classes they belong to. You know their label since you construct the trees from the training set. You maximize the purity of the groups as much as possible each time you create a new node of the tree (meaning you cut your set in two). Of course, at the end of the tree, you want to have a clear answer.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;“To which group does this sample belongs to? Based on this arrangement of features, without doubt, it belongs to Group 1!”&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;On the figure below is depicted the splitting process. Red rings and blue crosses symbolize elements with 2 different labels. The decision starts by evaluating the feature values of the elements inside the initial set. Based on their values, elements are put in Set 1 or Set 2. In this example, after the splitting, the state seems tidier, most of the red rings have been put in Set 1 while a majority of blue crosses are in Set 2.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/personal-blog/images/entropy/splitdiagram.png&quot; alt=&quot;Decision digram&quot; title=&quot;Decision diagram&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;So decision trees are here to tidy the dataset by looking at the values of the feature vector associated with each data point. Based on the values of each feature, decisions are made that eventually leads to a leaf and an answer.&lt;/p&gt;
+
+&lt;p&gt;At each step, each branching, you want to decrease the entropy, so this quantity is computed before the cut and after the cut. If it decreases, the split is validated and we can proceed to the next step, otherwise, we must try to split with another feature or stop this branch.&lt;/p&gt;
+
+&lt;p&gt;Before and after the decision, the sets are different and have different sizes. Still, entropy can be compared between these sets, using a weighted sum, as we will see in the next section.&lt;/p&gt;
+
+&lt;h2 id=&quot;mathematical-definition-of-entropy&quot;&gt;Mathematical definition of entropy&lt;/h2&gt;
+
+&lt;p&gt;Let us imagine we have a set of &lt;img src=&quot;http://chart.apis.google.com/chart?cht=tx&amp;amp;chl=N%0A&quot; alt=&quot;N&quot; /&gt; items. These items fall into two categories, &lt;img src=&quot;http://chart.apis.google.com/chart?cht=tx&amp;amp;chl=n%0A&quot; alt=&quot;n&quot; /&gt; have Label 1 and &lt;img src=&quot;http://chart.apis.google.com/chart?cht=tx&amp;amp;chl=m%3DN-n&quot; alt=&quot;m=N-n&quot; /&gt; have Label 2. As we have seen, to get our data a bit more ordered, we want to group them by labels. We introduce the ratio&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://chart.apis.google.com/chart?cht=tx&amp;amp;chl=p%3D%5Cfrac%7Bn%7D%7BN%7D%2C%20%5Cqquad%7B%5Crm%20and%7D%5Cqquad%20q%3D%5Cfrac%7Bm%7D%7BN%7D%3D1-p.&quot; alt=&quot;p = n/N&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The entropy of our set is given by the following equation:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://chart.apis.google.com/chart?cht=tx&amp;amp;chl=E%20%3D%20-p%20%5C%20%5Clog_2%20(p)%20-q%20%5C%20%5Clog_2%20(q).&quot; alt=&quot;Entropy formula&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;A set is tidy if it contains only items with the same label, and messy if it is a mix of items with different labels.
+Now have a look at the Entropy function, below. When there is no item with label 1 in the set (p=0) or if the set is full of items with Label 1 (p=1), the entropy is zero. If you have half with Label 1, half with Label 2 (p=1/2), the entropy is maximal (equals to 1 since it is the &lt;a href=&quot;https://en.wikipedia.org/wiki/Binary_logarithm&quot;&gt;log base 2&lt;/a&gt;).&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/personal-blog/images/entropy/entropyfunction2.png&quot; alt=&quot;Entropy function&quot; title=&quot;Entropy function&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;In addition to these properties, the function is symmetric with respect to p=0.5: among the two categories to classify, there not one which is messier than the other.&lt;/p&gt;
+
+&lt;p&gt;This function quantifies the messiness of the data.&lt;/p&gt;
+
+&lt;h2 id=&quot;evolution-of-entropy&quot;&gt;Evolution of entropy&lt;/h2&gt;
+
+&lt;p&gt;The entropy is an absolute measure which provides a number between 0 and 1, independently of the size of the set. It is not important if your room is small or large when it is messy. Also, if you separate your room in two, by building a wall in the middle, it does not look less messy! The entropy will remain the same on each part.&lt;/p&gt;
+
+&lt;p&gt;In decision trees, at each branching, the input set is split in 2. Let us understand how you compare entropy before and after the split. Imagine you start with a messy set with entropy one (half/half, p=q). In the worst case, it could be split into 2 messy sets where half of the items are labeled 1 and the other half have Label 2 in each set. Hence the entropy of each of the two resulting sets is 1. In this scenario, the messiness has not changed and we would like to have the same entropy before and after the split. We can not just sum the entropies of the two sets. A solution, often used in mathematics, is to compute the mean entropy of the two sets. In this case, the mean is one. However, in decision trees, a weighted sum of entropies is computed instead (weighted by the size of the two subsets):&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://chart.apis.google.com/chart?cht=tx&amp;amp;chl=E_%7B%5Crm%20split%7D%3D%5Cfrac%7BN_1%7D%7BN%7DE_1%2B%5Cfrac%7BN_2%7D%7BN%7DE_2&quot; alt=&quot;E_split = N_1/N E_1+N_2/N E_2&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;where &lt;img src=&quot;http://chart.apis.google.com/chart?cht=tx&amp;amp;chl=N_1&quot; alt=&quot;N_1&quot; /&gt; and &lt;img src=&quot;http://chart.apis.google.com/chart?cht=tx&amp;amp;chl=N_2&quot; alt=&quot;N_2&quot; /&gt; are the number of items of each sets after the split and &lt;img src=&quot;http://chart.apis.google.com/chart?cht=tx&amp;amp;chl=E_1&quot; alt=&quot;E_1&quot; /&gt; and &lt;img src=&quot;http://chart.apis.google.com/chart?cht=tx&amp;amp;chl=E_2&quot; alt=&quot;E_2&quot; /&gt; are their respective entropy.
+It gives more importance to the set which is larger (if any). The idea is that it is a bit better if the large set gets tidier, as it requires more efforts to tidy. Imagine the worst case where a set of 1000 elements is split in two, with a set of 999 elements and a set of 1 element. The latter set has an entropy of zero since it contains only one element, one label. But this is not really important as the vast majority of the data is still messy in the larger set. So the two sets should be given importance relative to their size.&lt;/p&gt;
+
+&lt;h2 id=&quot;limits-of-decision-trees&quot;&gt;Limits of decision trees&lt;/h2&gt;
+
+&lt;p&gt;Since it goes step by step, decision trees may not provide the optimal classification. It minimizes the entropy at each step but has no global view on the optimization process. Let me explain this differently. Sometimes it may be more efficient to start to put in order the bigger items in a room, even if there are not many of them and the impression of tidiness does not increase much after. You could then put the smaller items on top of the bigger to get a nicer view of your room. Starting the other way round might not lead to a room as neat. With the decision tree approach, you could also end up with many small groups of toys put in different parts of the room. They would be perfectly matched together however it would be better to group all the toys in one part of the room. This step by step approach is called a &lt;a href=&quot;https://en.wikipedia.org/wiki/Greedy_algorithm&quot;&gt;greedy approach&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;generalization&quot;&gt;Generalization&lt;/h2&gt;
+
+&lt;p&gt;If you have more than 2 labels, you can generalize the Entropy formula as follows:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://chart.apis.google.com/chart?cht=tx&amp;amp;chl=E%3D-%5Csum_ip_i%5Clog_2p_i%20%2C&quot; alt=&quot;E=-sum_ip_ilogp_i&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;where the &lt;img src=&quot;http://chart.apis.google.com/chart?cht=tx&amp;amp;chl=p_i&quot; alt=&quot;p_i&quot; /&gt; are the ratios of elements of each label in the set. It is quite straightforward!&lt;/p&gt;
+
+&lt;p&gt;You may use different kinds of entropies, have a look at &lt;a href=&quot;https://en.wikipedia.org/wiki/R%C3%A9nyi_entropy&quot;&gt;Renyi entropy&lt;/a&gt;. It is a generalization of the standard entropy (Shannon’s entropy). I am not sure it is of interest for decision trees but it shows the general properties required to call a function “entropy”.&lt;/p&gt;
+
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
+
+&lt;p&gt;We have seen that entropy is not just a mathematical formula. It has a simple interpretation that everyone can understand.If you now see what is entropy you should have a clearer idea of what are doing decision trees.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;By using entropy, decision trees tidy more than they classify the data.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;In physics, &lt;a href=&quot;https://en.wikipedia.org/wiki/Second_law_of_thermodynamics&quot;&gt;the second law of thermodynamics&lt;/a&gt; states that the entropy always increases over time, if you don’t bring (or take) any energy to the system.
+Don’t wait too long before tidying your room or your data!&lt;/p&gt;
+
+&lt;p&gt;I hope you have found this post useful. More Machine Learning posts should come soon.&lt;/p&gt;</content><author><name></name></author><category term="tutorial" /><category term="machine learning" /><category term="machine learning" /><category term="decision trees" /><category term="entropy" /><summary type="html">I recently wanted to refresh my memory about Machine Learning methods. I have spent some time reading tutorials, blogs and Wikipedia. No doubts, the Internet is really useful, this is great. I got back on tracks quickly with the general idea of the mainstream algorithms. However, from time to time, I find some particular points and explanations obscure. This concerns often details about the algorithms which are overlooked. Sometimes, the emphasis is on the main part of the algorithm and some details are left missing. But I found these missing parts quite important to fully understand what’s going on in the algorithm.</summary></entry><entry><title type="html">How graphs can help you find information in data</title><link href="/personal-blog/graph-of-words-from-emails/" rel="alternate" type="text/html" title="How graphs can help you find information in data" /><published>2017-08-20T00:00:00-05:00</published><updated>2017-08-20T00:00:00-05:00</updated><id>/personal-blog/graph-of-words-from-emails</id><content type="html" xml:base="/personal-blog/graph-of-words-from-emails/">&lt;p&gt;If you think graphs and networks techniques are only useful for graph datasets or data structured as a network of entities, you are wrong. You can leverage powerful graph methods by designing a graph from unstructured data. In this example, I show how to extract information from a set of texts (emails). At the end of this post, you will discover what H. Clinton was talking about in her emails, on which topics she was exchanging information and who/what was involved in each topic.&lt;/p&gt;
+
+&lt;p&gt;As a teaser, I can’t resist to show you an image of Clinton’s emails universe:
+&lt;img src=&quot;/personal-blog/images/HCmails/HCmails1.png&quot; alt=&quot;Graph of words&quot; title=&quot;Graph of words appearing in Clinton's emails&quot; /&gt;
+This is an example of a visualization of a network of words. A look at the graph provides interesting insights into this dataset of emails. Topics discussed in the emails can be guessed from the figure and the labels, as you will see below.&lt;/p&gt;
+
+&lt;p&gt;The nice post of my colleague and friend &lt;a href=&quot;http://blog.miz.space/&quot;&gt;Volodymir&lt;/a&gt; on &lt;a href=&quot;http://blog.miz.space/research/2017/08/14/wikipedia-collective-memory-dynamic-graph-analysis-graphx-spark-scala-time-series-network/&quot;&gt;Wikipedia graph mining&lt;/a&gt;, made me think that I should blog as well on my exploration of graphs and data analysis. Blogging is an interesting way to spread some science to a broader audience and scientists should do that more often. Also, this could help me share the fascinating world of graphs and networks and how it can be useful in practice. So here is my first contribution.&lt;/p&gt;
+
+&lt;h2 id=&quot;the-data&quot;&gt;The data&lt;/h2&gt;
+
+&lt;p&gt;The goal of this post is to demonstrate with an example that one can build a graph from some unstructured dataset to extract valuable information. Our dataset will be a set of texts. I have chosen Hillary Clinton’s emails as they are publicly available, most of the world has been aware of this controversy, or can easily get some information about it on &lt;a href=&quot;https://en.wikipedia.org/wiki/Hillary_Clinton_email_controversy&quot;&gt;wikipedia&lt;/a&gt;. We can find the dataset on Kaggle &lt;a href=&quot;https://www.kaggle.com/kaggle/hillary-clinton-emails&quot;&gt;here&lt;/a&gt;. This dataset contains the emails sent and received by Hillary Clinton between 2009 and 2011 in her private mailbox. As I said, the data has been made freely accessible to the public, except for some parts which have been censored by the US government. There are 7945 emails.&lt;/p&gt;
+
+&lt;h2 id=&quot;the-graph&quot;&gt;The graph&lt;/h2&gt;
+
+&lt;p&gt;The code for the data processing and graph design is available on &lt;a href=&quot;https://github.com/bricaud/HCmails&quot;&gt;my Github account&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;The idea is to extract some keywords from the emails and see how they relate together. From this, we could infer some interesting stories about politics and the work of H. C.&lt;/p&gt;
+
+&lt;h3 id=&quot;nodes&quot;&gt;Nodes&lt;/h3&gt;
+
+&lt;p&gt;We want to find some important words in the texts, and get rid of the useless articles for example. We could use a Natural Language Processing toolbox, there are several in Python. However, I want to keep this example simple. So we will select the proper nouns in the texts which can be found easily because they begin with a capital letter. Unfortunately, not all words beginning with a capital letter are proper nouns. The first word of each sentence has a capital as well. To avoid useless keywords, we can get rid of the words that appear frequently both with or without a capital letter. It is a sign that they are not proper nouns. This selection process is not perfect but it is a compromise between accuracy and complexity.&lt;/p&gt;
+
+&lt;p&gt;The keywords that have just been extracted from the corpus will form the nodes of our graph.&lt;/p&gt;
+
+&lt;h3 id=&quot;edges&quot;&gt;Edges&lt;/h3&gt;
+
+&lt;p&gt;Let us connect the nodes together if the keywords associated can be found in the same email. Moreover, we will associate a weight to the link, proportional to the number of texts where we have found them together. We expect to find clusters of well-connected words, forming topics.&lt;/p&gt;
+
+&lt;p&gt;But this is not enough to make a nice insightful graph to visualize. If you are someone experienced with data analysis you may think that this seems too good to be true. You are right. There are too many edges in the graph and it requires a bit more processing. So some  (in fact, many) edges have been removed based on their weight and the degree of the nodes they connect. We remove the weakest links, but weakness is relative to the node degree: We require that links have more chances to be removed if they connect nodes with numerous connections.&lt;/p&gt;
+
+&lt;h2 id=&quot;the-visualization-and-analysis&quot;&gt;The Visualization and analysis&lt;/h2&gt;
+
+&lt;p&gt;In order to separate nodes into groups or clusters, a community detection algorithm has been applied to the graph. On the figure, each color represents a different community.
+In addition, the radius of each node is related to the number of occurrences of the word in the texts. The layout of the graph is a force directed layout, meaning that nodes repulse each other and links are some elastic bindings between them.&lt;/p&gt;
+
+&lt;p&gt;The interactive graph can be found by clicking on the following link:
+&lt;a href=&quot;https://bricaud.github.io/HCmails/&quot;&gt;Interactive visualization&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Since it is hard to explain on an interactive visualization, I have made some screen shots of the graph. The following figure shows a global view of the graph.
+&lt;img src=&quot;/personal-blog/images/HCmails/HCmails1.png&quot; alt=&quot;Graph of words&quot; title=&quot;Graph of words appearing in Clinton's emails&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;On the borders of the graph, we can see several groups of nodes, many of them having a large radius (appearing in many emails). Notice that the visual clusters are not the same as the clusters found by the community detection. This is not a problem and both clusterings can bring slightly different information.&lt;/p&gt;
+
+&lt;p&gt;A closer look at the node colors shows that the communities are related to particular topics:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Foreign affairs (light orange)&lt;/li&gt;
+  &lt;li&gt;US politics (Green)&lt;/li&gt;
+  &lt;li&gt;United Kingdom (dark blue)&lt;/li&gt;
+  &lt;li&gt;Clinton’s collaborators (light blue)&lt;/li&gt;
+  &lt;li&gt;Travel/meetings (dark orange)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;As expected, H. Clinton messages are mainly focused on US politics and foreign affairs. First interesting fact is that she seems to treat UK politics differently from the rest of the world. Indeed, UK politics has its own cluster quite well separated from the rest. You can see Brown and Cameron in good position inside this group.
+&lt;img src=&quot;/personal-blog/images/HCmails/HCmailzoomGB.png&quot; alt=&quot;UK cluster&quot; title=&quot;Zoom on the UK cluster&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Staying in the foreign affairs, a large cluster can be seen containing words related to the Middle East, Israel and Palestine; A major concern of US politics for years. The size of the nodes shows how busy H. Clinton was writing emails about these topics. If you over the mouse on the nodes in the interactive visualization, you can get the number of occurrences of the words. Palestinian (244 times), Israeli (143) and Jewish (156) are the most used words in this cluster.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/personal-blog/images/HCmails/HCmailszoommiddleeast.png&quot; alt=&quot;Middle East cluster&quot; title=&quot;Zoom on the Middle East cluster&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;You can also spot in the middle of the graph a group of nodes related to Taliban, Afghanistan and Pakistan. This group is not as clearly isolated as the Middle East one. This might be due solely to the visualization layout or maybe because the emails concerning this topics are less focused and involve different other nouns/countries.
+&lt;img src=&quot;/personal-blog/images/HCmails/HCmailszoomAfghan.png&quot; alt=&quot;Taliban cluster&quot; title=&quot;Zoom on the Taliban cluster&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Back in 2010-2011, there was a major concern about the Middle East and Muslim countries. This is still true today.&lt;/p&gt;
+
+&lt;p&gt;Concerning the US politics, there is a large cluster with various keywords at the bottom of the graph. The precise topic is unsure and could involve several themes. Further analysis of the emails should be done to understand how they relate. The word “Democratic” seems to be quite central.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/personal-blog/images/HCmails/HCmailszoomUS.png&quot; alt=&quot;US politics cluster&quot; title=&quot;Zoom on the US politics cluster&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;During her mandate, it seems that one of the US elections has particularly raised H. Clinton interest. If you google some of the keywords in the image below, you will find &lt;a href=&quot;https://en.wikipedia.org/wiki/United_States_Senate_election_in_Ohio,_2010&quot;&gt;this page&lt;/a&gt; relating the event. The Democrat Brunner lost the Senate election in Ohio and the Republican Portman was elected.
+&lt;img src=&quot;/personal-blog/images/HCmails/HCmailszoomelections.png&quot; alt=&quot;Election cluster&quot; title=&quot;Zoom on the Election cluster&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Eventually, it is interesting to note that H. C. has close collaborators with whom she exchanges often. They are visible as light blue nodes on the following image. The orange nodes next to them seem to be related to the places, travels, and meetings Hillary refers in her emails.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/personal-blog/images/HCmails/HCmailzoomassist.png&quot; alt=&quot;Assistants cluster&quot; title=&quot;Zoom on the assistants cluster&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Some themes are clear and well-separated, some other not. For example, if you drag a node with a country name (mostly in light orange), You can see connections with other countries. You may notice a subgroup of South American countries, one with Asian countries and one related to Europe but connections between the groups are also present. These connections are of course not surprising and show a glimpse of the complexity of international relationships.&lt;/p&gt;
+
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
+
+&lt;p&gt;This Graph of words gives a snapshot of the topics discussed in Clinton’s emails. It is a quick way to get information without having to read the 7945 emails. It delivers much more information than just a list of keywords appearing often in emails. Remember that the raw data (texts) were not structured. Giving some structure with the aid of graphs led us to an interesting tour of Clinton’s political work. I hope I convinced you that graphs are useful tools for data mining, even if there is no network in the data!&lt;/p&gt;
+
+&lt;p&gt;Concerning the improvement of the visualization, we can point out a few uninformative nodes. The visualization could be improved further with an additional cleaning of the dataset. For example, first and last names should be put together because the node “Robert” connects here all the persons with first name Robert even if they are completely unrelated. Words containing numbers or nodes with month names should also be removed.&lt;/p&gt;
+
+&lt;p&gt;Further development could be done by taking the time into account. Clearly, some of the topics have a limited time span and related keywords that do not appear in this time span could be easily disconnected.&lt;/p&gt;</content><author><name></name></author><category term="graph" /><category term="data science" /><summary type="html">If you think graphs and networks techniques are only useful for graph datasets or data structured as a network of entities, you are wrong. You can leverage powerful graph methods by designing a graph from unstructured data. In this example, I show how to extract information from a set of texts (emails). At the end of this post, you will discover what H. Clinton was talking about in her emails, on which topics she was exchanging information and who/what was involved in each topic.</summary></entry></feed>
